@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAABQ77GROikyfGbE2FZo2zgAAAAACAAAAAAAQZgAAAAEAACAAAADOkMV1pTRCx3MSBR0fYmGUadrNXMmxqe2CKhHsS4noFgAAAAAOgAAAAAIAACAAAABlW/pyDWMX6D8TRxNVxZG5RjpMU4N5VSs9CNI1RHd4VyAAAADYKXaKbWYSP1J5Wd7Dc+Pn5E0EFkAoQW0SVuNCcsJK3EAAAABSwnHAFLNGQkgDTGxaucRf/QCGJ3RE6LAnZV6ER98vb/602BDbSygq4w6Ompkqs0wkp84PoqISIk9VcBUM/gmX</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="assets/crossway.css">
+      <publishTime>06/19/2014 14:08:36</publishTime>
+    </File>
+    <File Include="assets/crossway.min.css">
+      <publishTime>06/19/2014 14:08:37</publishTime>
+    </File>
+    <File Include="assets/jquery-ui.css">
+      <publishTime>06/19/2014 09:50:51</publishTime>
+    </File>
+    <File Include="assets/jquery.mobile.icons.min.css">
+      <publishTime>06/19/2014 14:09:12</publishTime>
+    </File>
+    <File Include="bin/DoSomethingWeb.dll">
+      <publishTime>06/20/2014 10:40:11</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.Edm.dll">
+      <publishTime>06/17/2014 13:13:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.OData.dll">
+      <publishTime>06/17/2014 13:13:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.Services.Client.dll">
+      <publishTime>06/17/2014 13:13:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.Services.dll">
+      <publishTime>06/17/2014 13:13:16</publishTime>
+    </File>
+    <File Include="bin/System.Spatial.dll">
+      <publishTime>06/17/2014 13:13:13</publishTime>
+    </File>
+    <File Include="dosomething.html">
+      <publishTime>06/20/2014 10:57:33</publishTime>
+    </File>
+    <File Include="do_something.dbml">
+      <publishTime>06/20/2014 08:47:40</publishTime>
+    </File>
+    <File Include="dsservice.svc">
+      <publishTime>06/17/2014 13:13:13</publishTime>
+    </File>
+    <File Include="images/back-8.jpg">
+      <publishTime>06/19/2014 13:43:40</publishTime>
+    </File>
+    <File Include="images/facebook.png">
+      <publishTime>06/19/2014 13:19:31</publishTime>
+    </File>
+    <File Include="images/logo.png">
+      <publishTime>06/19/2014 12:23:25</publishTime>
+    </File>
+    <File Include="images/twitter.png">
+      <publishTime>06/19/2014 13:20:14</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/17/2014 13:13:16</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/20/2014 10:40:41</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

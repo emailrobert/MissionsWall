@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dosomething" Class="DoSomethingDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=mssql.visitcrossway.com;Initial Catalog=dosomething;Persist Security Info=True;User ID=dosomething" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="dosomethingConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.dosomething" Member="dosomethings">
+    <Type Name="dosomething">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="contactname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="contactemail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="contactareacode" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="contactprefix" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="contactnumber" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="eventtitle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="eventdesc" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="eventlocation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="startdate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="starttime" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="enddate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="endtime" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
