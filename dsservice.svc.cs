@@ -43,7 +43,26 @@ namespace DoSomethingWeb
             }
             catch (Exception ex)
             {
-                throw new Exception("Error finding DoSomethings " + ex.Message);
+                throw new Exception("Error finding DoSomething " + ex.Message);
+            }
+        }
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        public dosomething[] GetAllDoSomethings()
+        {
+            try
+            {
+                DoSomethingDataContext ds = new DoSomethingDataContext();
+                var dss = from i in ds.dosomethings
+                                  select i;
+                dosomething[] ii = dss.ToArray<dosomething>();
+                return ii;
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Error Getting All DoSomethings", ex.Message);
+                return null;
             }
         }
 
