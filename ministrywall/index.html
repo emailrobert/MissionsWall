@@ -238,11 +238,16 @@
                         var email = result[i].contactemail;
                         email = email.toLowerCase();
 
+                        var qrstring = result[i].eventtitle + "|" + datestring + "|" + result[i].contactname + "|" + result[i].contactemail + "|(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber
+                        qrstring = qrstring.replace(/ /g, "+");
+                        qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
+
                         $(currentcell + "title").html(result[i].eventtitle);
                         $(currentcell + "desc").html(result[i].eventdesc);
                         $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
                         $(currentcell + "date").html(datestring);
                         $(currentcell + "location").html(result[i].eventlocation);
+                        $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
                         divcounter++;
                     }
 
@@ -268,7 +273,6 @@
                                 $(currentcell + "poc").html("");
                                 $(currentcell + "date").html("");
                                 $(currentcell + "location").html("");
-                                //$(currentcell + "qr").html("");
                             }
                         }
 
@@ -292,11 +296,17 @@
                             email = result[i].contactemail;
                             email = email.toLowerCase();
 
+                            qrstring = result[i].eventtitle + "|" + result[i].startdate + "|" + result[i].contactname + "|" + result[i].contactemail + "|(" + result[i].contactareacode + ")|" + result[i].contactprefix + "-" + result[i].contactnumber
+                            qrstring = qrstring.replace(/ /g, "+");
+                            qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
+
+
                             $(currentcell + "title").html(result[i].eventtitle);
                             $(currentcell + "desc").html(result[i].eventdesc);
                             $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
                             $(currentcell + "date").html(datestring);
                             $(currentcell + "location").html(result[i].eventlocation);
+                            $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
 
                             divcounter++;
                         }
@@ -333,7 +343,7 @@
                 Old Poc
             </div>
             <div id="flier0qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+                Old QR
             </div>
         </div>
         <div class="flier1">
@@ -355,7 +365,7 @@
                 Old Poc
             </div>
             <div id="flier1qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               Old QR
             </div>
         </div>
         <div class="flier2">
@@ -377,7 +387,7 @@
                 Old Poc
             </div>
             <div id="flier2qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+                Old QR
             </div>
         </div>
         <div class="flier3">
@@ -399,7 +409,7 @@
                 Old Poc
             </div>
             <div id="flier3qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+                Old QR
             </div>
         </div>
         <div class="flier4">
@@ -421,7 +431,7 @@
                 Old Poc
             </div>
             <div id="flier4qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+                Old QR
             </div>
         </div>
         <div class="flier5">
@@ -443,7 +453,7 @@
                 Old Poc
             </div>
             <div id="flier5qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+                Old QR
             </div>
         </div>
         <div class="flier6">
@@ -465,7 +475,7 @@
                 Old Poc
             </div>
             <div id="flier6qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+                Old QR
             </div>
         </div>
         <div class="flier7">
@@ -487,7 +497,7 @@
                 Old Poc
             </div>
             <div id="flier7qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+                Old QR
             </div>
         </div>
     </div>

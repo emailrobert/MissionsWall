@@ -73,7 +73,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2014 11:38:03</publishTime>
     </File>
     <File Include="ministrywall/index.html">
-      <publishTime>06/21/2014 13:46:56</publishTime>
+      <publishTime>06/21/2014 14:02:04</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>06/17/2014 13:13:16</publishTime>
