@@ -46,14 +46,77 @@
             background-image:url(images/corkboard-background.png);
         }
 
-        .flier1
+        .flier0
         {
-           position:relative;
-           float:left;
+           position:absolute;
+           float:none;
            width:380px;
            height:430px;
            top:70px;
            left:110px;
+        }
+
+        .flier1
+        {
+           position:absolute;
+           width:380px;
+           height:430px;
+           top:70px;
+           left:565px;
+        }
+
+        .flier2
+        {
+           position:absolute;
+           width:380px;
+           height:430px;
+           top:60px;
+           left:980px;
+        }
+
+        .flier3
+        {
+           position:absolute;
+           width:380px;
+           height:430px;
+           top:70px;
+           left:1420px;
+        }
+
+        .flier4
+        {
+           position:absolute;
+           width:380px;
+           height:430px;
+           top:560px;
+           left:90px;
+        }
+
+        .flier5
+        {
+           position:absolute;
+           width:380px;
+           height:430px;
+           top:580px;
+           left:540px;
+        }
+
+        .flier6
+        {
+           position:absolute;
+           width:380px;
+           height:430px;
+           top:570px;
+           left:1000px;
+        }
+
+        .flier7
+        {
+           position:absolute;
+           width:380px;
+           height:430px;
+           top:570px;
+           left:1420px;
         }
 
         .title
@@ -132,29 +195,107 @@
                 data: { dsId: '83fbed3c-8965-4e30-b213-2d7412881be6' },
                 dataType: "json",
                 success: function (result) {
-                    if (result.startdate != "") {
-                        datestring = result.startdate;
-                    }
-                    if (result.enddate != "" && result.enddate != result.startdate) {
-                        datestring = datestring + "-" + result.enddate;
-                    }
-                    if (result.starttime != "") {
-                        datestring = datestring + "<br>" + result.starttime;
-                    }
-                    if (result.endtime != "" && result.endtime != result.starttime) {
-                        datestring = datestring + "-" + result.endtime;
+
+                    
+                    var numpages = Math.floor(result.length / 8);
+                    var rem = result.length % 8;
+                    if (rem > 0) { numpages = numpages + 1 };
+
+                    var endpoint;
+
+                    var numfliers = result.length;
+
+                    if (numpages == 1) {
+                        endpoint = numfliers;
+                    } else {
+                        endpoint = 8;
                     }
 
-                    var currentcell = "#flier1title";
+                    var currentpage = 1;
+                    var divcounter = 0
+                    var currentcell;
 
-                    $(currentcell).html(result.eventtitle);
-                    $("#flier1desc").html(result.eventdesc);
-                    $("#flier1poc").html(result.contactname + "<br>" + result.contactemail + "<br>" + "(" + result.contactareacode + ")" + result.contactprefix + "-" + result.contactnumber);
-                    $("#flier1date").html(datestring);
-                    $("#flier1location").html(result.eventlocation);
-                    //$("#flier1").html(result.eventtitle);
-                    //$("#flier1").html(result.eventtitle);
-                    //$("#flier1").html(result.eventtitle);
+                    var i;
+                    var j;
+
+                    for (i = 0; i < endpoint; i++) {
+                        if (result[i].startdate != "") {
+                            datestring = result[i].startdate;
+                        }
+                        if (result[i].enddate != "" && result[i].enddate != result[i].startdate) {
+                            datestring = datestring + "-" + result[i].enddate;
+                        }
+                        if (result[i].starttime != "") {
+                            datestring = datestring + "<br>" + result[i].starttime;
+                        }
+                        if (result[i].endtime != "" && result[i].endtime != result[i].starttime) {
+                            datestring = datestring + "-" + result[i].endtime;
+                        }
+
+                        currentcell = "#flier" + divcounter;
+
+                        $(currentcell + "title").html(result[i].eventtitle);
+                        $(currentcell + "desc").html(result[i].eventdesc);
+                        $(currentcell + "poc").html(result[i].contactname + "<br>" + result[i].contactemail + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
+                        $(currentcell + "date").html(datestring);
+                        $(currentcell + "location").html(result[i].eventlocation);
+                        divcounter++;
+                    }
+
+                    var timer = setInterval(function () {
+
+                        currentpage++;
+                        divcounter = 0;
+
+                        if (currentpage > numpages) {
+                            currentpage = 1
+                        };
+
+                        var startpoint = (currentpage * 8) - 8;
+                        endpoint = startpoint + 8;
+
+                        if (endpoint > numfliers) {
+                            endpoint = numfliers;
+                            var cdstart = endpoint - startpoint;
+                            for (j = cdstart; j < 8; j++) {
+                                currentcell = "#flier" + j;
+                                $(currentcell + "title").html("");
+                                $(currentcell + "desc").html("");
+                                $(currentcell + "poc").html("");
+                                $(currentcell + "date").html("");
+                                $(currentcell + "location").html("");
+                                //$(currentcell + "qr").html("");
+                            }
+                        }
+
+
+                        for (i = startpoint; i < endpoint; i++) {
+                            if (result[i].startdate != "") {
+                                datestring = result[i].startdate;
+                            }
+                            if (result[i].enddate != "" && result[i].enddate != result[i].startdate) {
+                                datestring = datestring + "-" + result[i].enddate;
+                            }
+                            if (result[i].starttime != "") {
+                                datestring = datestring + "<br>" + result[i].starttime;
+                            }
+                            if (result[i].endtime != "" && result[i].endtime != result[i].starttime) {
+                                datestring = datestring + "-" + result[i].endtime;
+                            }
+
+                            currentcell = "#flier" + divcounter;
+
+                            $(currentcell + "title").html(result[i].eventtitle);
+                            $(currentcell + "desc").html(result[i].eventdesc);
+                            $(currentcell + "poc").html(result[i].contactname + "<br>" + result[i].contactemail + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
+                            $(currentcell + "date").html(datestring);
+                            $(currentcell + "location").html(result[i].eventlocation);
+
+                            divcounter++;
+                        }
+
+
+                    }, 10000)
                 },
                 error: function (textStatus) {
                     alert('Error returned from GetDoSomething');
@@ -166,6 +307,29 @@
 
 <body onload="GetAllDoSomethings()">
     <div class="container">
+        <div class="flier0">
+            <div id="flier0title" class="title">
+                Old Title
+            </div>
+            <div id="flier0date" class="date">
+                Old Date
+            </div>
+            <div id="flier0location" class="location">
+                Old Location
+            </div>
+            <br />
+            <div id="flier0desc" class="desc">
+                Old Desc
+            </div>
+            <br />
+            <div id="flier0poc" class="poc">
+                Old Poc
+            </div>
+            <br />
+            <div id="flier0qr" class="qr">
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+            </div>
+        </div>
         <div class="flier1">
             <div id="flier1title" class="title">
                 Old Title
@@ -186,6 +350,144 @@
             </div>
             <br />
             <div id="flier1qr" class="qr">
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+            </div>
+        </div>
+        <div class="flier2">
+            <div id="flier2title" class="title">
+                Old Title
+            </div>
+            <div id="flier2date" class="date">
+                Old Date
+            </div>
+            <div id="flier2location" class="location">
+                Old Location
+            </div>
+            <br />
+            <div id="flier2desc" class="desc">
+                Old Desc
+            </div>
+            <br />
+            <div id="flier2poc" class="poc">
+                Old Poc
+            </div>
+            <br />
+            <div id="flier2qr" class="qr">
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+            </div>
+        </div>
+        <div class="flier3">
+            <div id="flier3title" class="title">
+                Old Title
+            </div>
+            <div id="flier3date" class="date">
+                Old Date
+            </div>
+            <div id="flier3location" class="location">
+                Old Location
+            </div>
+            <br />
+            <div id="flier3desc" class="desc">
+                Old Desc
+            </div>
+            <br />
+            <div id="flier3poc" class="poc">
+                Old Poc
+            </div>
+            <br />
+            <div id="flier3qr" class="qr">
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+            </div>
+        </div>
+        <div class="flier4">
+            <div id="flier4title" class="title">
+                Old Title
+            </div>
+            <div id="flier4date" class="date">
+                Old Date
+            </div>
+            <div id="flier4location" class="location">
+                Old Location
+            </div>
+            <br />
+            <div id="flier4desc" class="desc">
+                Old Desc
+            </div>
+            <br />
+            <div id="flier4poc" class="poc">
+                Old Poc
+            </div>
+            <br />
+            <div id="flier4qr" class="qr">
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+            </div>
+        </div>
+        <div class="flier5">
+            <div id="flier5title" class="title">
+                Old Title
+            </div>
+            <div id="flier5date" class="date">
+                Old Date
+            </div>
+            <div id="flier5location" class="location">
+                Old Location
+            </div>
+            <br />
+            <div id="flier5desc" class="desc">
+                Old Desc
+            </div>
+            <br />
+            <div id="flier5poc" class="poc">
+                Old Poc
+            </div>
+            <br />
+            <div id="flier5qr" class="qr">
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+            </div>
+        </div>
+        <div class="flier6">
+            <div id="flier6title" class="title">
+                Old Title
+            </div>
+            <div id="flier6date" class="date">
+                Old Date
+            </div>
+            <div id="flier6location" class="location">
+                Old Location
+            </div>
+            <br />
+            <div id="flier6desc" class="desc">
+                Old Desc
+            </div>
+            <br />
+            <div id="flier6poc" class="poc">
+                Old Poc
+            </div>
+            <br />
+            <div id="flier6qr" class="qr">
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+            </div>
+        </div>
+        <div class="flier7">
+            <div id="flier7title" class="title">
+                Old Title
+            </div>
+            <div id="flier7date" class="date">
+                Old Date
+            </div>
+            <div id="flier7location" class="location">
+                Old Location
+            </div>
+            <br />
+            <div id="flier7desc" class="desc">
+                Old Desc
+            </div>
+            <br />
+            <div id="flier7poc" class="poc">
+                Old Poc
+            </div>
+            <br />
+            <div id="flier7qr" class="qr">
                <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
