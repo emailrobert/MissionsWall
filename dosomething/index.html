@@ -331,7 +331,8 @@
                     contentType: "application/json",
                     data: { contactname: $("#ds_name").val(), contactemail: $("#ds_email").val(), contactareacode: $("#ds_areacode").val(), contactprefix: $("#ds_prefix").val(), contactnumber: $("#ds_number").val(), eventtitle: $("#ds_title").val(), eventdesc: $("#ds_desc").val(), eventlocation: $("#ds_location").val(), startdate: $("#ds_startdate").val(), starttime: $("#ds_starttime").val(), enddate: $("#ds_enddate").val(), endtime: $("#ds_endtime").val() }, 
                     success: function (result) {
-                       
+                        //alert("Do Something event successfully added!");
+                        $("#popupDialog").popup("open");
                     },
                     error: function (msg) {
                        
@@ -395,6 +396,15 @@
             <!--<input style="width:100%" type="Submit" " value="Submit">-->
         <!--</form>-->
         <input style="width:100%" type="button" onclick="AddDoSomething()" id="ds_submit" value="Submit">
+        <div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+			<div data-role="header" data-theme="a" class="ui-corner-top">
+				<h1>Success!</h1>
+			</div>
+			<div role="main" class="ui-corner-bottom ui-content">
+				<h3 class="ui-title">Your Do Something event was successfully created!</h3>
+				<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Ok</a>
+			</div>
+		</div>
 	</div><!-- /content -->
 
     <p class="social">
