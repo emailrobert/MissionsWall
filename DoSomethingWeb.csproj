@@ -82,7 +82,7 @@
     <Content Include="assets\crossway.min.css" />
     <Content Include="assets\jquery-ui.css" />
     <Content Include="assets\jquery.mobile.icons.min.css" />
-    <Content Include="dosomething.html" />
+    <Content Include="dosomething\index.html" />
     <Content Include="images\corkboard-background.png" />
     <Content Include="dsservice.svc" />
     <Content Include="images\back-8.jpg" />
@@ -90,7 +90,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\twitter.png" />
     <Content Include="index.html" />
-    <Content Include="ministrywall.html" />
+    <Content Include="ministrywall\index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
