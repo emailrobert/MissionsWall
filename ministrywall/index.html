@@ -152,18 +152,18 @@
         {
             font-family:Arial;
             font-weight: bold;
-            font-size:18px;
+            font-size:16px;
             text-align:center;
             width:100%;
         }
 
         .qr
         {
-            width:115px;
-            height:125px;
+            width:90px;
+            height:100px;
             text-align:center;
             position:relative;
-            left:70px;
+            left:100px;
             transform:rotate(7deg);
             -ms-transform:rotate(7deg); /* IE 9 */
             -webkit-transform:rotate(7deg); /* Opera, Chrome, and Safari */
@@ -235,9 +235,12 @@
 
                         currentcell = "#flier" + divcounter;
 
+                        var email = result[i].contactemail;
+                        email = email.toLowerCase();
+
                         $(currentcell + "title").html(result[i].eventtitle);
                         $(currentcell + "desc").html(result[i].eventdesc);
-                        $(currentcell + "poc").html(result[i].contactname + "<br>" + result[i].contactemail + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
+                        $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
                         $(currentcell + "date").html(datestring);
                         $(currentcell + "location").html(result[i].eventlocation);
                         divcounter++;
@@ -286,9 +289,12 @@
 
                             currentcell = "#flier" + divcounter;
 
+                            email = result[i].contactemail;
+                            email = email.toLowerCase();
+
                             $(currentcell + "title").html(result[i].eventtitle);
                             $(currentcell + "desc").html(result[i].eventdesc);
-                            $(currentcell + "poc").html(result[i].contactname + "<br>" + result[i].contactemail + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
+                            $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
                             $(currentcell + "date").html(datestring);
                             $(currentcell + "location").html(result[i].eventlocation);
 
@@ -326,9 +332,8 @@
             <div id="flier0poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier0qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
         <div class="flier1">
@@ -349,9 +354,8 @@
             <div id="flier1poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier1qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
         <div class="flier2">
@@ -372,9 +376,8 @@
             <div id="flier2poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier2qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
         <div class="flier3">
@@ -395,9 +398,8 @@
             <div id="flier3poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier3qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
         <div class="flier4">
@@ -418,9 +420,8 @@
             <div id="flier4poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier4qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
         <div class="flier5">
@@ -441,9 +442,8 @@
             <div id="flier5poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier5qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
         <div class="flier6">
@@ -464,9 +464,8 @@
             <div id="flier6poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier6qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
         <div class="flier7">
@@ -487,9 +486,8 @@
             <div id="flier7poc" class="poc">
                 Old Poc
             </div>
-            <br />
             <div id="flier7qr" class="qr">
-               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
+               <iframe frameborder="0"  class="qr" src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=visitcrossway.com/dosomething.html&choe=UTF-8&chld=L|0"></iframe>
             </div>
         </div>
     </div>

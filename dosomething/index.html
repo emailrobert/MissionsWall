@@ -354,32 +354,33 @@
         <h3>Enter a new Do Something Event!</h3>
         <!--<form id="JqAjaxForm">    -->     
 		    <label for="ds_name">Contact name for this service opportunity:</label>
-            <input type="text" name="name" id="ds_name" value=""><br />
+            <input maxlength="25" type="text" name="name" id="ds_name" value=""><br />
             <label for="ds_email">Contact email:</label>
-            <input type="text" name="email" id="ds_email" value=""><br />
+            <input maxlength="40" type="text" name="email" id="ds_email" value=""><br />
             <label for="ds_phone">Contact phone number:</label>
             <div class="left">
-                <input type="text" name="phone" id="ds_areacode" onkeyup="ValidatePassKey(this,3,'ds_prefix')")>
+                <input maxlength="3" type="text" name="phone" id="ds_areacode" onkeyup="ValidatePassKey(this,3,'ds_prefix')")>
             </div>
             <div class="right">
                 -
             </div>
             <div class="left">
-                <input type="text" name="phone1" id="ds_prefix" onkeyup="ValidatePassKey(this,3,'ds_number')")>
+                <input maxlength="3" type="text" name="phone1" id="ds_prefix" onkeyup="ValidatePassKey(this,3,'ds_number')")>
             </div>
             <div class="right">
                 -
             </div>
             <div class="left">
-                <input type="text" name="phone2" id="ds_number" onkeyup="ValidatePassKey(this,4,'ds_title')")>
+                <input maxlength="4" type="text" name="phone2" id="ds_number" onkeyup="ValidatePassKey(this,4,'ds_title')")>
             </div>
             <br /><br /><br /><br />
-            <label for="ds_title">Event Title: (Car Wash This Saturday!)</label>
-            <input type="text" name="title" id="ds_title" value=""><br />
+            <label for="ds_title">Event Title: (Car Wash This Saturday!) Max 25 Characters</label>
+            <input maxlength="25" type="text" name="title" id="ds_title" value=""><br />
             <label for="ds_desc">Event Description: (The youth will hold a car wash this saturday to raise blah, blah,)</label>
-            <input type="text" name="desc" id="ds_desc" value=""><br />
+            <textarea maxlength="115" name="desc" id="ds_desc"></textarea>
+            <!--<input type="text" name="desc" id="ds_desc" value=""><br />-->
             <label for="ds_location">Event Location: (Crossway Church)</label>
-            <input type="text" name="location" id="ds_location" value=""><br />
+            <input maxlength="25" type="text" name="location" id="ds_location" value=""><br />
             <label><input type="checkbox" id="ds_ongoing" name="ds_ongoing" checked="checked" onclick="toggleStatus()"> Ongoing Event or need (no dates required)</label>
             <div id="datestuff">
                 <p>Start Date: <input disabled="disabled" type="text" id="ds_startdate"></p>

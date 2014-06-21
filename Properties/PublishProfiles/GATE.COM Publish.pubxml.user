@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2014 16:07:05</publishTime>
     </File>
     <File Include="bin/DoSomethingWeb.dll">
-      <publishTime>06/21/2014 13:01:00</publishTime>
+      <publishTime>06/21/2014 13:47:09</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>06/28/2012 11:22:46</publishTime>
@@ -43,7 +43,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2014 16:07:05</publishTime>
     </File>
     <File Include="dosomething/index.html">
-      <publishTime>06/21/2014 13:00:51</publishTime>
+      <publishTime>06/21/2014 13:36:59</publishTime>
     </File>
     <File Include="do_something.dbml">
       <publishTime>06/20/2014 16:07:05</publishTime>
@@ -73,7 +73,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2014 11:38:03</publishTime>
     </File>
     <File Include="ministrywall/index.html">
-      <publishTime>06/21/2014 11:49:16</publishTime>
+      <publishTime>06/21/2014 13:46:56</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>06/17/2014 13:13:16</publishTime>
