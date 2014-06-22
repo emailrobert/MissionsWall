@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title id='Description'>This example shows how to use the Grid API to customize a column's rendering.</title>
+    <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="assets/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxdata.js"></script> 
+    <script type="text/javascript" src="assets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.pager.js"></script>    
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.selection.js"></script>      
+    <!--<script type="text/javascript" src="assets/jqwidgets/demos.js"></script>-->
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            // prepare the data
+
+            var url = "dsservice.svc/GetAllDoSomethings";
+            // prepare the data
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'contactname', type: 'string' },
+                    { name: 'contactemail', type: 'string' },
+                    { name: 'contactareacode', type: 'string' },
+                    { name: 'contactprefix', type: 'string' },
+                    { name: 'contactnumber', type: 'string' },
+                    { name: 'eventtitle', type: 'string' },
+                    { name: 'eventdesc', type: 'string' },
+                    { name: 'eventlocation', type: 'string' },
+                    { name: 'startdate', type: 'string' },
+                    { name: 'starttime', type: 'string' },
+                    { name: 'enddate', type: 'string' },
+                    { name: 'endtime', type: 'string' }
+                ],
+                id: 'Id',
+                url: url
+            };
+
+            var linkrenderer = function (row, column, value) {
+
+                if (value.indexOf('#') != -1) {
+                    value = value.substring(0, value.indexOf('#'));
+                }
+
+                //var format = { target: '"_blank"' };
+                //var html = $.jqx.dataFormat.formatlink(value, format);
+                var html = "mailto:" + value;
+                return html;
+
+            }
+
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            // Create jqxGrid.
+
+            $("#jqxgrid").jqxGrid(
+            {
+                width: 850,
+                source: dataAdapter,
+                pageable: true,
+                autoheight: true,
+                columns: [
+                 // { text: 'Event Creator', datafield: 'eventcontact', width: 550, cellsrenderer: linkrenderer },
+                  { text: 'Contact Name', datafield: 'contactname', width: 200 },
+                  { text: 'Contact Email', datafield: 'contactemail', width: 200, cellsrenderer: linkrenderer },
+                  { text: 'Start Date', datafield: 'startdate', width: 250, cellsformat: "D" },
+                  { text: 'Event Title', datafield: 'eventtitle', width: 200 }
+                ]
+            });
+        });
+    </script>
+
+</head>
+
+<body class='default'>
+
+    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+        <div id="jqxgrid">
+        </div>
+    </div>
+</body>
+</html>

@@ -80,8 +80,23 @@
   <ItemGroup>
     <Content Include="assets\crossway.css" />
     <Content Include="assets\crossway.min.css" />
+    <Content Include="assets\jquery-2.1.1.min.js" />
     <Content Include="assets\jquery-ui.css" />
+    <Content Include="assets\jquery-ui.min.js" />
+    <Content Include="assets\jquery.mobile-1.4.2.min.css" />
+    <Content Include="assets\jquery.mobile-1.4.2.min.js" />
     <Content Include="assets\jquery.mobile.icons.min.css" />
+    <Content Include="assets\jqwidgets\jqxbuttons.js" />
+    <Content Include="assets\jqwidgets\jqxcore.js" />
+    <Content Include="assets\jqwidgets\jqxdata.js" />
+    <Content Include="assets\jqwidgets\jqxdropdownlist.js" />
+    <Content Include="assets\jqwidgets\jqxgrid.js" />
+    <Content Include="assets\jqwidgets\jqxgrid.pager.js" />
+    <Content Include="assets\jqwidgets\jqxgrid.selection.js" />
+    <Content Include="assets\jqwidgets\jqxlistbox.js" />
+    <Content Include="assets\jqwidgets\jqxmenu.js" />
+    <Content Include="assets\jqwidgets\jqxscrollbar.js" />
+    <Content Include="assets\jqwidgets\styles\jqx.base.css" />
     <Content Include="dosomething\index.html" />
     <Content Include="images\corkboard-background.png" />
     <Content Include="dsservice.svc" />
@@ -90,6 +105,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\twitter.png" />
     <Content Include="index.html" />
+    <Content Include="manager.html" />
     <Content Include="ministrywall\index.html" />
     <Content Include="Web.config" />
   </ItemGroup>

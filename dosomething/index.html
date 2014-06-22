@@ -5,14 +5,14 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+	<link rel="stylesheet" href="../assets/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="../assets/jquery-ui.css">
     <link rel="stylesheet" href="../assets/crossway.css" />
     <link rel="stylesheet" href="../assets/jquery.mobile.icons.min.css" /> 
-	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <!--<link rel="stylesheet" href="jquery.ui.datepicker.mobile.css" /> -->
+	<script src="../assets/jquery-2.1.1.min.js"></script>
+	<script src="../assets/jquery.mobile-1.4.2.min.js"></script>
+    <script src="../assets/jquery-ui.min.js"></script>
+    s
     <script>
         $(document).ready(function () {
             //called when key is pressed in textbox
@@ -285,12 +285,12 @@
             }
         }
   </script>
-    <script>
+    <!--<script>
         function ValidatePassKey(tb,maxlength,nextId) {
             if (tb.value.length >= maxlength)
                 document.getElementById(nextId).focus();
         }
-    </script>
+    </script>-->
     <style>
         div.logo {
 	        width:100%; 
@@ -388,19 +388,19 @@
             <input maxlength="40" type="text" name="email" id="ds_email" value=""><br />
             <label for="ds_phone">Contact phone number:</label>
             <div class="left">
-                <input title="areacode" pattern="[0-9]*" maxlength="3" type="text" name="phone" id="ds_areacode" onkeyup="ValidatePassKey(this,3,'ds_prefix')")>
+                <input title="areacode" pattern="[0-9]*" maxlength="3" type="text" name="phone" id="ds_areacode")>
             </div>
             <div class="right">
                 -
             </div>
             <div class="left">
-                <input title="prefix" pattern="[0-9]*" maxlength="3" type="text" name="phone1" id="ds_prefix" onkeyup="ValidatePassKey(this,3,'ds_number')")>
+                <input title="prefix" pattern="[0-9]*" maxlength="3" type="text" name="phone1" id="ds_prefix")>
             </div>
             <div class="right">
                 -
             </div>
             <div class="left">
-                <input title="number" pattern="[0-9]*" maxlength="4" type="text" name="phone2" id="ds_number" onkeyup="ValidatePassKey(this,4,'ds_title')")>
+                <input title="number" pattern="[0-9]*" maxlength="4" type="text" name="phone2" id="ds_number")>
             </div>
             <br /><br /><br /><br />
             <label for="ds_title">Event Title: (Car Wash This Saturday!) Max 25 Characters</label>
