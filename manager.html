@@ -4,6 +4,7 @@
 
     <title id='Description'>This example shows how to use the Grid API to customize a column's rendering.</title>
     <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.energyblue.css" type="text/css" />
     <script type="text/javascript" src="assets/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxdata.js"></script> 
@@ -13,6 +14,7 @@
     <script type="text/javascript" src="assets/jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxmenu.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.edit.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.pager.js"></script>    
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.selection.js"></script>      
 
@@ -42,7 +44,24 @@
                     { name: 'endtime', type: 'string' }
                 ],
                 id: 'Id',
-                url: url
+                url: url,
+                updaterow: function (rowid, rowdata, commit) {
+                    // synchronize with the server - send update command
+                    
+                    $.ajax({
+                        type: "GET",
+                        url: "dsservice.svc/UpdateDoSomething",
+                        contentType: "application/json",
+                        data: { dsId: rowdata.uid, eventtitle: rowdata.eventtitle, eventdesc: rowdata.eventdesc, eventlocation: rowdata.eventlocation },
+                        
+                        success: function (result) {
+                            alert("Do Something Record Successfully Updated");
+                        },
+                        error: function (textStatus) {
+                            alert("Error Updating Do Something Record");
+                        }
+                    });
+                }
             };
 
             var linkrenderer = function (row, column, value) {
@@ -64,15 +83,47 @@
 
             $("#jqxgrid").jqxGrid(
             {
-                width: '100%',
+                width: 1050,
                 source: dataAdapter,
                 pageable: true,
                 autoheight: true,
+                theme: 'energyblue',
+                autorowheight: true,
+                rowsheight: 70,
+                editable: true,
+                altrows: true,
                 columns: [
-                  { text: 'Contact Name', datafield: 'contactname', width: '25%' },
-                  { text: 'Contact Email', datafield: 'contactemail', width: '25%', cellsrenderer: linkrenderer },
-                  { text: 'Start Date', datafield: 'startdate', width: '25%', cellsformat: "D" },
-                  { text: 'Event Title', datafield: 'eventtitle', width: '25%' }
+                  { text: 'Contact Name', datafield: 'contactname', width: '100px', editable: false},
+                  //{ text: 'Contact Email', datafield: 'contactemail', width: '200px', cellsrenderer: linkrenderer },
+                  { text: 'Start Date', datafield: 'startdate', width: '100px', cellsformat: "D", editable: false },
+                  {
+                      text: 'Event Title', datafield: 'eventtitle', width: '200px',
+                      validation: function (cell, value) {
+                          if (value.length > 25) {
+                              return { result: false, message: "Title must be 25 characters or less" };
+                          }
+                          return true;
+                      },
+                  },
+                  {
+                      text: 'Event Location', datafield: 'eventlocation', width: '200px',
+                      validation: function (cell, value) {
+                          if (value.length > 25) {
+                              return { result: false, message: "Location must be 25 characters or less" };
+                          }
+                          return true;
+                      },
+                  },
+                  {
+                      text: 'Event Description', datafield: 'eventdesc', width: '450px',
+                      validation: function (cell, value) {
+                          if (value.length > 115) {
+                              return { result: false, message: "Description must be 115 characters or less" };
+                          }
+                          return true;
+                      },
+
+                  }
                 ]
             });
         });
@@ -81,8 +132,8 @@
 </head>
 
 <body class='default'>
-
-    <div id='jqxWidget' style="width:100%; font-size: 13px; font-family: Verdana; float: left;">
+    <div id='jqxWidget' style="width:1050px;margin:auto;font-size: 13px; font-family: Verdana;">     
+            <h1>Crossway Church Do Something Events</h1>
         <div id="jqxgrid">
         </div>
     </div>

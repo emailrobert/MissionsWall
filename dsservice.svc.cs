@@ -102,5 +102,32 @@ namespace DoSomethingWeb
             }
         }
 
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation)
+        //public void AddDoSomething(string contactname, string contactemail)
+        {
+            try
+            {
+
+                DoSomethingDataContext ds = new DoSomethingDataContext();
+
+                var sl = from n in ds.dosomethings
+                         where n.Id == dsId
+                         select n;
+
+                dosomething s = sl.First<dosomething>();
+
+                s.eventtitle = eventtitle;
+                s.eventdesc = eventdesc;
+                s.eventlocation = eventlocation;             
+                ds.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Error Updating DoSomething", ex.Message);
+            }
+        }
+
     }
 }

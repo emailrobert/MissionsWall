@@ -86,10 +86,12 @@
     <Content Include="assets\jquery.mobile-1.4.2.min.css" />
     <Content Include="assets\jquery.mobile-1.4.2.min.js" />
     <Content Include="assets\jquery.mobile.icons.min.css" />
+    <Content Include="assets\jqwidgets\styles\jqx.energyblue.css" />
     <Content Include="assets\jqwidgets\jqxbuttons.js" />
     <Content Include="assets\jqwidgets\jqxcore.js" />
     <Content Include="assets\jqwidgets\jqxdata.js" />
     <Content Include="assets\jqwidgets\jqxdropdownlist.js" />
+    <Content Include="assets\jqwidgets\jqxgrid.edit.js" />
     <Content Include="assets\jqwidgets\jqxgrid.js" />
     <Content Include="assets\jqwidgets\jqxgrid.pager.js" />
     <Content Include="assets\jqwidgets\jqxgrid.selection.js" />
