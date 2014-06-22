@@ -15,7 +15,6 @@
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.pager.js"></script>    
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.selection.js"></script>      
-    <!--<script type="text/javascript" src="assets/jqwidgets/demos.js"></script>-->
 
     <script type="text/javascript">
 
@@ -54,7 +53,7 @@
 
                 //var format = { target: '"_blank"' };
                 //var html = $.jqx.dataFormat.formatlink(value, format);
-                var html = "mailto:" + value;
+                var html = "<a href='mailto:" + value + "'>" + value + "</a>";
                 return html;
 
             }
@@ -65,16 +64,16 @@
 
             $("#jqxgrid").jqxGrid(
             {
-                width: 850,
+                width: '100%',
                 source: dataAdapter,
                 pageable: true,
                 autoheight: true,
                 columns: [
                  // { text: 'Event Creator', datafield: 'eventcontact', width: 550, cellsrenderer: linkrenderer },
-                  { text: 'Contact Name', datafield: 'contactname', width: 200 },
-                  { text: 'Contact Email', datafield: 'contactemail', width: 200, cellsrenderer: linkrenderer },
-                  { text: 'Start Date', datafield: 'startdate', width: 250, cellsformat: "D" },
-                  { text: 'Event Title', datafield: 'eventtitle', width: 200 }
+                  { text: 'Contact Name', datafield: 'contactname', width: '25%' },
+                  { text: 'Contact Email', datafield: 'contactemail', width: '25%', cellsrenderer: linkrenderer },
+                  { text: 'Start Date', datafield: 'startdate', width: '25%', cellsformat: "D" },
+                  { text: 'Event Title', datafield: 'eventtitle', width: '25%' }
                 ]
             });
         });
@@ -84,7 +83,7 @@
 
 <body class='default'>
 
-    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+    <div id='jqxWidget' style="width:100%; font-size: 13px; font-family: Verdana; float: left;">
         <div id="jqxgrid">
         </div>
     </div>

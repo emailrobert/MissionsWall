@@ -96,6 +96,10 @@
     <Content Include="assets\jqwidgets\jqxlistbox.js" />
     <Content Include="assets\jqwidgets\jqxmenu.js" />
     <Content Include="assets\jqwidgets\jqxscrollbar.js" />
+    <Content Include="assets\jqwidgets\styles\images\icon-first.png" />
+    <Content Include="assets\jqwidgets\styles\images\icon-last.png" />
+    <Content Include="assets\jqwidgets\styles\images\icon-left.png" />
+    <Content Include="assets\jqwidgets\styles\images\icon-right.png" />
     <Content Include="assets\jqwidgets\styles\jqx.base.css" />
     <Content Include="dosomething\index.html" />
     <Content Include="images\corkboard-background.png" />
