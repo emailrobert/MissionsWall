@@ -100,7 +100,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/23/2014 08:28:43</publishTime>
     </File>
     <File Include="bin/DoSomethingWeb.dll">
-      <publishTime>06/23/2014 13:57:04</publishTime>
+      <publishTime>06/23/2014 14:11:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>06/17/2014 13:13:14</publishTime>
@@ -145,7 +145,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/19/2014 13:19:31</publishTime>
     </File>
     <File Include="images/logo.png">
-      <publishTime>06/19/2014 12:23:25</publishTime>
+      <publishTime>06/23/2014 14:09:39</publishTime>
     </File>
     <File Include="images/twitter.png">
       <publishTime>06/19/2014 13:20:14</publishTime>
