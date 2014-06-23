@@ -183,14 +183,14 @@
         var url = 'http://visitcrossway.com/dsservice.svc/';
         var urllocal = '../dsservice.svc/';
 
-        function GetAllDoSomethings() {
+        function GetAllApprovedDoSomethings() {
 
             var response;
             var datestring = "";
 
             $.ajax({
                 type: "GET",
-                url: urllocal + "GetAllDoSomethings",
+                url: urllocal + "GetAllApprovedDoSomethings",
                 //contentType: "application/json",
                 data: { dsId: '83fbed3c-8965-4e30-b213-2d7412881be6' },
                 dataType: "json",
@@ -322,7 +322,7 @@
     </script>
 </head>
 
-<body onload="GetAllDoSomethings()">
+<body onload="GetAllApprovedDoSomethings()">
     <div class="container">
         <div class="flier0">
             <div id="flier0title" class="title">

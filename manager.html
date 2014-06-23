@@ -12,6 +12,7 @@
     <script type="text/javascript" src="assets/jqwidgets/jqxscrollbar.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxlistbox.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxcheckbox.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxmenu.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.edit.js"></script>
@@ -41,7 +42,8 @@
                     { name: 'startdate', type: 'string' },
                     { name: 'starttime', type: 'string' },
                     { name: 'enddate', type: 'string' },
-                    { name: 'endtime', type: 'string' }
+                    { name: 'endtime', type: 'string' },
+                    { name: 'approved', type: 'boolean' }
                 ],
                 id: 'Id',
                 url: url,
@@ -52,7 +54,7 @@
                         type: "GET",
                         url: "dsservice.svc/UpdateDoSomething",
                         contentType: "application/json",
-                        data: { dsId: rowdata.uid, eventtitle: rowdata.eventtitle, eventdesc: rowdata.eventdesc, eventlocation: rowdata.eventlocation },
+                        data: { dsId: rowdata.uid, eventtitle: rowdata.eventtitle, eventdesc: rowdata.eventdesc, eventlocation: rowdata.eventlocation, approved:rowdata.approved },
                         
                         success: function (result) {
                             alert("Do Something Record Successfully Updated");
@@ -123,7 +125,8 @@
                           return true;
                       },
 
-                  }
+                  },
+                  { text: 'Approved?', dataField: 'approved', columntype: 'checkbox', width: '100px'},
                 ]
             });
         });

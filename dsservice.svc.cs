@@ -68,6 +68,26 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        public dosomething[] GetAllApprovedDoSomethings()
+        {
+            try
+            {
+                DoSomethingDataContext ds = new DoSomethingDataContext();
+                var dss = from i in ds.dosomethings
+                          where i.approved == true
+                          select i;
+                dosomething[] ii = dss.ToArray<dosomething>();
+                return ii;
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Error Getting All DoSomethings", ex.Message);
+                return null;
+            }
+        }
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
         public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime)
         //public void AddDoSomething(string contactname, string contactemail)
         {
@@ -104,7 +124,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation)
+        public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation, bool approved)
         //public void AddDoSomething(string contactname, string contactemail)
         {
             try
@@ -120,7 +140,8 @@ namespace DoSomethingWeb
 
                 s.eventtitle = eventtitle;
                 s.eventdesc = eventdesc;
-                s.eventlocation = eventlocation;             
+                s.eventlocation = eventlocation;
+                s.approved = approved;
                 ds.SubmitChanges();
             }
             catch (Exception ex)

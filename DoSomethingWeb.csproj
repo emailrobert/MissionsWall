@@ -86,6 +86,11 @@
     <Content Include="assets\jquery.mobile-1.4.2.min.css" />
     <Content Include="assets\jquery.mobile-1.4.2.min.js" />
     <Content Include="assets\jquery.mobile.icons.min.css" />
+    <Content Include="assets\jqwidgets\jqxcheckbox.js" />
+    <Content Include="assets\jqwidgets\styles\images\check_black.png" />
+    <Content Include="assets\jqwidgets\styles\images\check_blue.png" />
+    <Content Include="assets\jqwidgets\styles\images\check_disabled.png" />
+    <Content Include="assets\jqwidgets\styles\images\check_lightblue.png" />
     <Content Include="assets\jqwidgets\styles\jqx.energyblue.css" />
     <Content Include="assets\jqwidgets\jqxbuttons.js" />
     <Content Include="assets\jqwidgets\jqxcore.js" />

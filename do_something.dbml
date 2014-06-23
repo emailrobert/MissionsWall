@@ -9,12 +9,13 @@
       <Column Name="contactprefix" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
       <Column Name="contactnumber" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
       <Column Name="eventtitle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="eventdesc" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="eventdesc" Type="System.String" DbType="VarChar(130)" CanBeNull="true" />
       <Column Name="eventlocation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="startdate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="starttime" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="enddate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="endtime" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

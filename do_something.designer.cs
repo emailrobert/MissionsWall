@@ -108,6 +108,8 @@ namespace DoSomethingWeb
 		
 		private string _endtime;
 		
+		private System.Nullable<bool> _approved;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -138,6 +140,8 @@ namespace DoSomethingWeb
     partial void OnenddateChanged();
     partial void OnendtimeChanging(string value);
     partial void OnendtimeChanged();
+    partial void OnapprovedChanging(System.Nullable<bool> value);
+    partial void OnapprovedChanged();
     #endregion
 		
 		public dosomething()
@@ -292,7 +296,7 @@ namespace DoSomethingWeb
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventdesc", DbType="VarChar(150)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventdesc", DbType="VarChar(130)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
 		public string eventdesc
 		{
@@ -414,6 +418,27 @@ namespace DoSomethingWeb
 					this._endtime = value;
 					this.SendPropertyChanged("endtime");
 					this.OnendtimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved", DbType="Bit")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14)]
+		public System.Nullable<bool> approved
+		{
+			get
+			{
+				return this._approved;
+			}
+			set
+			{
+				if ((this._approved != value))
+				{
+					this.OnapprovedChanging(value);
+					this.SendPropertyChanging();
+					this._approved = value;
+					this.SendPropertyChanged("approved");
+					this.OnapprovedChanged();
 				}
 			}
 		}
