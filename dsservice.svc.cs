@@ -74,7 +74,7 @@ namespace DoSomethingWeb
             {
                 DoSomethingDataContext ds = new DoSomethingDataContext();
                 var dss = from i in ds.dosomethings
-                          where i.approved == true
+                          where i.approved == true && Convert.ToDateTime(i.startdate) >= DateTime.Today
                           select i;
                 dosomething[] ii = dss.ToArray<dosomething>();
                 return ii;

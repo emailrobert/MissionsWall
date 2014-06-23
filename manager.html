@@ -117,7 +117,7 @@
                       },
                   },
                   {
-                      text: 'Event Description', datafield: 'eventdesc', width: '450px',
+                      text: 'Event Description', datafield: 'eventdesc', width: '400px',
                       validation: function (cell, value) {
                           if (value.length > 115) {
                               return { result: false, message: "Description must be 115 characters or less" };
@@ -126,7 +126,7 @@
                       },
 
                   },
-                  { text: 'Approved?', dataField: 'approved', columntype: 'checkbox', width: '100px'},
+                  { text: 'Post?', dataField: 'approved', columntype: 'checkbox', width: '50px'},
                 ]
             });
         });

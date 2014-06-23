@@ -207,6 +207,15 @@
 
                     if (numpages == 1) {
                         endpoint = numfliers;
+                        for (j = endpoint; j < 8; j++) {
+                            currentcell = "#flier" + j;
+                            $(currentcell + "title").html("");
+                            $(currentcell + "desc").html("");
+                            $(currentcell + "poc").html("");
+                            $(currentcell + "date").html("");
+                            $(currentcell + "location").html("");
+                            $(currentcell + "qr").html("");
+                        }
                     } else {
                         endpoint = 8;
                     }
