@@ -116,7 +116,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\twitter.png" />
     <Content Include="index.html" />
-    <Content Include="manager.html" />
+    <Content Include="dosomething\manage.html" />
     <Content Include="ministrywall\index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -129,6 +129,7 @@
     <Compile Include="dsservice.svc.cs">
       <DependentUpon>dsservice.svc</DependentUpon>
     </Compile>
+    <Compile Include="Globals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

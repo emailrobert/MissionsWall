@@ -13,6 +13,7 @@ using System.Linq;
 using System.ServiceModel.Web;
 using System.Web;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace DoSomethingWeb
 {
@@ -137,6 +138,11 @@ namespace DoSomethingWeb
                 ds.dosomethings.InsertOnSubmit(d);
                 ds.SubmitChanges();
 
+                string managers = ConfigurationManager.AppSettings["DoSomethingManagers"];
+                string smtpserver = ConfigurationManager.AppSettings["smtpserver"];
+
+                Globals gf = new Globals();
+                gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Submission", "http://dosomething.visitcrossway.org/manage.html", smtpserver);
             }
             catch (Exception ex)
             {
