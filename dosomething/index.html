@@ -404,21 +404,21 @@
                 <input title="number" pattern="[0-9]*" maxlength="4" type="text" name="phone2" id="ds_number")>
             </div>
             <br /><br /><br /><br />
-            <label for="ds_title">Event Title: (Car Wash This Saturday!) Max 25 Characters</label>
+            <label for="ds_title">Service Opportunity Title: (Soup Kitchen Volunteer) Max 25 Characters</label>
             <input maxlength="25" type="text" name="title" id="ds_title" value=""><br />
-            <label for="ds_desc">Event Description: (The youth will hold a car wash this saturday to raise blah, blah,)</label>
+            <label for="ds_desc">Service Description: (Getting a group together to serve at the soup kitchen, blah, blah,)</label>
             <textarea maxlength="115" name="desc" id="ds_desc"></textarea>
             <!--<input type="text" name="desc" id="ds_desc" value=""><br />-->
-            <label for="ds_location">Event Location: (Crossway Church)</label>
+            <label for="ds_location">Location (optional): (Meet in church parking lot)</label>
             <input maxlength="25" type="text" name="location" id="ds_location" value=""><br />
             <label><input type="checkbox" id="ds_ongoing" name="ds_ongoing" checked="checked" onclick="toggleStatus()"> Ongoing Event or need (no dates required)</label>
             <div id="datestuff">
-                <p>Start Date: <input disabled="disabled" type="text" id="ds_startdate"></p>
+                <p>Start Date (optional, if this is an ongoing need no date may be necessary): <input disabled="disabled" type="text" id="ds_startdate"></p>
                 <div class="ui-widget">
                   <label for="ds_starttime">Start Time: </label>
                   <input id="ds_starttime" disabled="disabled">
                 </div>
-                <p>End Date: <input type="text" id="ds_enddate" disabled="disabled"></p>
+                <p>End Date (optional, leave blank if the event starts and ends on same day): <input type="text" id="ds_enddate" disabled="disabled"></p>
                 <div class="ui-widget">
                   <label for="ds_endtime">End Time: </label>
                   <input id="ds_endtime" disabled="disabled">

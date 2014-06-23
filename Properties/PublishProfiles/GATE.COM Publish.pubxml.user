@@ -100,7 +100,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/23/2014 08:28:43</publishTime>
     </File>
     <File Include="bin/DoSomethingWeb.dll">
-      <publishTime>06/23/2014 09:12:22</publishTime>
+      <publishTime>06/23/2014 12:53:25</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>06/17/2014 13:13:14</publishTime>
@@ -121,10 +121,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2014 16:07:05</publishTime>
     </File>
     <File Include="dosomething/index.html">
-      <publishTime>06/23/2014 09:10:33</publishTime>
+      <publishTime>06/23/2014 12:46:46</publishTime>
     </File>
     <File Include="dosomething/manage.html">
-      <publishTime>06/23/2014 08:28:43</publishTime>
+      <publishTime>06/23/2014 09:19:38</publishTime>
     </File>
     <File Include="dosomething/thanks.html">
       <publishTime>06/23/2014 09:09:10</publishTime>
@@ -160,7 +160,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2014 11:38:03</publishTime>
     </File>
     <File Include="ministrywall/index.html">
-      <publishTime>06/23/2014 08:28:43</publishTime>
+      <publishTime>06/23/2014 09:54:10</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>06/17/2014 13:13:16</publishTime>

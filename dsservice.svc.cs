@@ -143,8 +143,10 @@ namespace DoSomethingWeb
                 string managers = ConfigurationManager.AppSettings["DoSomethingManagers"];
                 string smtpserver = ConfigurationManager.AppSettings["smtpserver"];
 
+                string messagebody = "A new Do Something posting has been submitted!" + Environment.NewLine + Environment.NewLine + contactname + Environment.NewLine + contactemail + Environment.NewLine + contactareacode + "-" + contactprefix + "-" + contactnumber + Environment.NewLine + eventtitle + Environment.NewLine + eventdesc + Environment.NewLine + eventlocation + Environment.NewLine + "http://visitcrossway.com/dosomething/manage.html";
+
                 Globals gf = new Globals();
-                gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Submission", "http://visitcrossway.com/dosomething/manage.html", smtpserver);
+                gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Submission", messagebody, smtpserver);
             }
             catch (Exception ex)
             {
