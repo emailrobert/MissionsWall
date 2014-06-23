@@ -54,7 +54,7 @@
                         type: "GET",
                         url: "dsservice.svc/UpdateDoSomething",
                         contentType: "application/json",
-                        data: { dsId: rowdata.uid, eventtitle: rowdata.eventtitle, eventdesc: rowdata.eventdesc, eventlocation: rowdata.eventlocation, approved:rowdata.approved },
+                        data: { dsId: rowdata.uid, eventtitle: rowdata.eventtitle, eventdesc: rowdata.eventdesc, eventlocation: rowdata.eventlocation, approved:rowdata.approved, startdate:rowdata.startdate },
                         
                         success: function (result) {
                             alert("Do Something Record Successfully Updated");
@@ -97,7 +97,7 @@
                 columns: [
                   { text: 'Contact Name', datafield: 'contactname', width: '100px', editable: false},
                   //{ text: 'Contact Email', datafield: 'contactemail', width: '200px', cellsrenderer: linkrenderer },
-                  { text: 'Start Date', datafield: 'startdate', width: '100px', cellsformat: "D", editable: false },
+                  { text: 'Start Date', datafield: 'startdate', width: '100px', cellsformat: "D" },
                   {
                       text: 'Event Title', datafield: 'eventtitle', width: '200px',
                       validation: function (cell, value) {
@@ -108,7 +108,7 @@
                       },
                   },
                   {
-                      text: 'Event Location', datafield: 'eventlocation', width: '200px',
+                      text: 'Event Location', datafield: 'eventlocation', width: '150px',
                       validation: function (cell, value) {
                           if (value.length > 25) {
                               return { result: false, message: "Location must be 25 characters or less" };
@@ -126,7 +126,38 @@
                       },
 
                   },
-                  { text: 'Post?', dataField: 'approved', columntype: 'checkbox', width: '50px'},
+                  { text: 'Post?', dataField: 'approved', columntype: 'checkbox', width: '50px' },
+
+                  {
+                      text: 'Delete', datafield: 'Delete', columntype: 'button', width: '50px', cellsrenderer: function () {
+                          return "Delete";
+                      }, buttonclick: function (row) {
+
+                          var r = confirm("Delete Do Domething?");
+                          if (r == true) {
+                              editrowindex = row;
+                              var id = $("#jqxgrid").jqxGrid('getcellvalue', editrowindex, "uid");
+                              var rid = $("#jqxgrid").jqxGrid('getrowid', editrowindex);
+
+                              $.ajax({
+                                  type: "GET",
+                                  url: "dsservice.svc/DeleteDoSomething",
+                                  contentType: "application/json",
+                                  data: { dsId: id },
+
+                                  success: function (result) {
+                                      $("#jqxgrid").jqxGrid('deleterow', rid);
+                                  },
+                                  error: function (textStatus) {
+                                      alert("Error Deleted Do Something Record");
+                                  }
+                              });
+                          } else {
+                             
+                          }
+                      }
+                  }
+
                 ]
             });
         });

@@ -27,6 +27,28 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        public void DeleteDoSomething(Guid dsId)
+        {
+            try
+            {
+                DoSomethingDataContext cg = new DoSomethingDataContext();
+
+                var ds = from v in cg.dosomethings
+                             where v.Id == dsId
+                             select v;
+
+                dosomething rv = ds.First<dosomething>();
+                cg.dosomethings.DeleteOnSubmit(rv);
+                cg.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting Do Something " + ex.Message);
+            }
+        }
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
         public dosomething GetDoSomething(Guid dsId)
         {
             try
@@ -124,7 +146,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation, bool approved)
+        public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation, bool approved, string startdate)
         //public void AddDoSomething(string contactname, string contactemail)
         {
             try
@@ -142,6 +164,7 @@ namespace DoSomethingWeb
                 s.eventdesc = eventdesc;
                 s.eventlocation = eventlocation;
                 s.approved = approved;
+                s.startdate = startdate;
                 ds.SubmitChanges();
             }
             catch (Exception ex)
