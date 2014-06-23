@@ -28,10 +28,9 @@ namespace DoSomethingWeb
                     EmailMessage.To.Add(recipient);
                 }
 
-                var client = new SmtpClient("smtp.gmail.com", 587)
+                var client = new SmtpClient("64.26.60.229", 587)
                 {
-                    Credentials = new NetworkCredential("robertswalker@gmail.com", "Golly99x"),
-                    EnableSsl = true
+                    Credentials = new NetworkCredential("missions@visitcrossway.org", "p@ssw0rd"),
                 };
 
                 EmailMessage.Subject = Subject;
