@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="do_something">
   <DataContextMoniker Name="/DoSomethingDataContext" />
   <nestedChildShapes>
-    <classShape Id="6f7441fc-34e5-4ba4-b400-8d0b010f503e" absoluteBounds="2.25, 2.625, 2, 3.5151021580894781">
+    <classShape Id="3395fadc-2eea-4e7f-90f2-70ad9cc5f965" absoluteBounds="4.25, 2.625, 2, 3.6939111328124996">
       <DataClassMoniker Name="/DoSomethingDataContext/dosomething" />
       <nestedChildShapes>
-        <elementListCompartment Id="8cff4153-80b4-43e7-9fb0-392094b0a199" absoluteBounds="2.265, 3.085, 1.9700000000000002, 2.9551021580894785" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ef934920-77f6-46d8-83ca-efae27a0ffe3" absoluteBounds="4.265, 3.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

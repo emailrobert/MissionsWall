@@ -78,7 +78,8 @@ namespace DoSomethingWeb
             {
                 DoSomethingDataContext ds = new DoSomethingDataContext();
                 var dss = from i in ds.dosomethings
-                                  select i;
+                          orderby i.submissiondate descending
+                          select i;
                 dosomething[] ii = dss.ToArray<dosomething>();
                 return ii;
             }
@@ -98,7 +99,6 @@ namespace DoSomethingWeb
                 DoSomethingDataContext ds = new DoSomethingDataContext();
                 var dss = from i in ds.dosomethings
                           where i.approved == true && ( i.startdate == "" || Convert.ToDateTime(i.startdate) >= DateTime.Today)
-                          //where i.approved == true &&  i.startdate == ""
                           select i;
                 dosomething[] ii = dss.ToArray<dosomething>();
                 return ii;
@@ -112,7 +112,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved)
+        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved, DateTime today)
         //public void AddDoSomething(string contactname, string contactemail)
         {
             try
@@ -133,7 +133,8 @@ namespace DoSomethingWeb
                     starttime = starttime,
                     enddate = enddate,
                     endtime = endtime,
-                    approved = approved
+                    approved = approved,
+                    submissiondate = today.ToString()
                 };
 
                 DoSomethingDataContext ds = new DoSomethingDataContext();

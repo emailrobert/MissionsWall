@@ -110,6 +110,8 @@ namespace DoSomethingWeb
 		
 		private System.Nullable<bool> _approved;
 		
+		private string _submissiondate;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -142,6 +144,8 @@ namespace DoSomethingWeb
     partial void OnendtimeChanged();
     partial void OnapprovedChanging(System.Nullable<bool> value);
     partial void OnapprovedChanged();
+    partial void OnsubmissiondateChanging(string value);
+    partial void OnsubmissiondateChanged();
     #endregion
 		
 		public dosomething()
@@ -439,6 +443,27 @@ namespace DoSomethingWeb
 					this._approved = value;
 					this.SendPropertyChanged("approved");
 					this.OnapprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_submissiondate", DbType="VarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15)]
+		public string submissiondate
+		{
+			get
+			{
+				return this._submissiondate;
+			}
+			set
+			{
+				if ((this._submissiondate != value))
+				{
+					this.OnsubmissiondateChanging(value);
+					this.SendPropertyChanging();
+					this._submissiondate = value;
+					this.SendPropertyChanged("submissiondate");
+					this.OnsubmissiondateChanged();
 				}
 			}
 		}
