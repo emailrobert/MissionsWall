@@ -97,7 +97,8 @@ namespace DoSomethingWeb
             {
                 DoSomethingDataContext ds = new DoSomethingDataContext();
                 var dss = from i in ds.dosomethings
-                          where i.approved == true && Convert.ToDateTime(i.startdate) >= DateTime.Today
+                          where i.approved == true && ( i.startdate == "" || Convert.ToDateTime(i.startdate) >= DateTime.Today)
+                          //where i.approved == true &&  i.startdate == ""
                           select i;
                 dosomething[] ii = dss.ToArray<dosomething>();
                 return ii;
@@ -111,7 +112,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime)
+        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved)
         //public void AddDoSomething(string contactname, string contactemail)
         {
             try
@@ -131,7 +132,8 @@ namespace DoSomethingWeb
                     startdate = startdate,
                     starttime = starttime,
                     enddate = enddate,
-                    endtime = endtime
+                    endtime = endtime,
+                    approved = approved
                 };
 
                 DoSomethingDataContext ds = new DoSomethingDataContext();
