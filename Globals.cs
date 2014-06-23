@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Drawing;
 using System.Net.Mail;
+using System.Diagnostics;
+using System.Net;
 
 namespace DoSomethingWeb
 {
@@ -12,25 +14,35 @@ namespace DoSomethingWeb
 
         public void MailMessage(string FromAddress, string ToAddress, string Subject, string Body, string smtpserver)
         {
-       //     MailAddress MailToAddress = new MailAddress(ToAddress);
-            MailAddress MailFromAddress = new MailAddress(FromAddress);
-            MailMessage EmailMessage = new MailMessage();
-
-            EmailMessage.From = MailFromAddress;
-
-
-            string[] recipients = ToAddress.Split(',');
-            foreach (string recipient in recipients)
+            try
             {
-                EmailMessage.To.Add(recipient);
-            }
+                MailAddress MailFromAddress = new MailAddress(FromAddress);
+                MailMessage EmailMessage = new MailMessage();
 
-            SmtpClient MailSender = new SmtpClient(smtpserver);
-            
-            EmailMessage.Subject = Subject;
-            EmailMessage.Body = Body;
-            
-            MailSender.Send(EmailMessage);
+                EmailMessage.From = MailFromAddress;
+
+
+                string[] recipients = ToAddress.Split(',');
+                foreach (string recipient in recipients)
+                {
+                    EmailMessage.To.Add(recipient);
+                }
+
+                var client = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new NetworkCredential("robertswalker@gmail.com", "Golly99x"),
+                    EnableSsl = true
+                };
+
+                EmailMessage.Subject = Subject;
+                EmailMessage.Body = Body;
+
+                client.Send(EmailMessage);
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Error Sending Email", ex.Message);
+            }
         }
 
     }

@@ -360,8 +360,8 @@
                     contentType: "application/json",
                     data: { contactname: $("#ds_name").val(), contactemail: $("#ds_email").val(), contactareacode: $("#ds_areacode").val(), contactprefix: $("#ds_prefix").val(), contactnumber: $("#ds_number").val(), eventtitle: $("#ds_title").val(), eventdesc: $("#ds_desc").val(), eventlocation: $("#ds_location").val(), startdate: $("#ds_startdate").val(), starttime: $("#ds_starttime").val(), enddate: $("#ds_enddate").val(), endtime: $("#ds_endtime").val() }, 
                     success: function (result) {
-                        //alert("Do Something event successfully added!");
-                        $("#popupDialog").popup("open");
+                       // alert("Do Something event successfully added!");
+                       $("#popupDialog").popup("open");
                     },
                     error: function (msg) {
                        

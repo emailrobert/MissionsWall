@@ -36,6 +36,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/jqwidgets/jqxbuttons.js">
       <publishTime>06/21/2014 16:21:00</publishTime>
     </File>
+    <File Include="assets/jqwidgets/jqxcheckbox.js">
+      <publishTime>06/22/2014 18:55:07</publishTime>
+    </File>
     <File Include="assets/jqwidgets/jqxcore.js">
       <publishTime>06/21/2014 16:21:00</publishTime>
     </File>
@@ -44,6 +47,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="assets/jqwidgets/jqxdropdownlist.js">
       <publishTime>06/21/2014 16:21:00</publishTime>
+    </File>
+    <File Include="assets/jqwidgets/jqxgrid.edit.js">
+      <publishTime>06/22/2014 16:50:50</publishTime>
     </File>
     <File Include="assets/jqwidgets/jqxgrid.js">
       <publishTime>06/21/2014 16:21:00</publishTime>
@@ -63,6 +69,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/jqwidgets/jqxscrollbar.js">
       <publishTime>06/21/2014 16:21:00</publishTime>
     </File>
+    <File Include="assets/jqwidgets/styles/images/check_black.png">
+      <publishTime>06/22/2014 19:08:59</publishTime>
+    </File>
+    <File Include="assets/jqwidgets/styles/images/check_blue.png">
+      <publishTime>06/22/2014 19:08:59</publishTime>
+    </File>
+    <File Include="assets/jqwidgets/styles/images/check_disabled.png">
+      <publishTime>06/22/2014 19:08:59</publishTime>
+    </File>
+    <File Include="assets/jqwidgets/styles/images/check_lightblue.png">
+      <publishTime>06/22/2014 19:08:59</publishTime>
+    </File>
     <File Include="assets/jqwidgets/styles/images/icon-first.png">
       <publishTime>06/22/2014 16:12:33</publishTime>
     </File>
@@ -78,8 +96,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/jqwidgets/styles/jqx.base.css">
       <publishTime>06/21/2014 16:21:00</publishTime>
     </File>
+    <File Include="assets/jqwidgets/styles/jqx.energyblue.css">
+      <publishTime>06/22/2014 17:52:15</publishTime>
+    </File>
     <File Include="bin/DoSomethingWeb.dll">
-      <publishTime>06/22/2014 16:33:56</publishTime>
+      <publishTime>06/22/2014 21:08:44</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>06/28/2012 11:22:46</publishTime>
@@ -100,10 +121,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2014 16:07:05</publishTime>
     </File>
     <File Include="dosomething/index.html">
-      <publishTime>06/22/2014 15:46:36</publishTime>
+      <publishTime>06/22/2014 21:15:56</publishTime>
+    </File>
+    <File Include="dosomething/manage.html">
+      <publishTime>06/22/2014 20:33:56</publishTime>
     </File>
     <File Include="do_something.dbml">
-      <publishTime>06/20/2014 16:07:05</publishTime>
+      <publishTime>06/22/2014 18:59:46</publishTime>
     </File>
     <File Include="dsservice.svc">
       <publishTime>06/20/2014 16:07:05</publishTime>
@@ -133,13 +157,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2014 11:38:03</publishTime>
     </File>
     <File Include="ministrywall/index.html">
-      <publishTime>06/21/2014 15:04:50</publishTime>
+      <publishTime>06/22/2014 19:58:42</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>06/17/2014 13:13:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/21/2014 11:28:14</publishTime>
+      <publishTime>06/22/2014 21:08:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

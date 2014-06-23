@@ -142,7 +142,7 @@ namespace DoSomethingWeb
                 string smtpserver = ConfigurationManager.AppSettings["smtpserver"];
 
                 Globals gf = new Globals();
-                gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Submission", "http://dosomething.visitcrossway.org/manage.html", smtpserver);
+                gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Submission", "http://visitcrossway.com/dosomething/manage.html", smtpserver);
             }
             catch (Exception ex)
             {
