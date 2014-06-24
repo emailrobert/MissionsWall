@@ -109,6 +109,7 @@
     <Content Include="assets\jqwidgets\styles\images\icon-right.png" />
     <Content Include="assets\jqwidgets\styles\jqx.base.css" />
     <Content Include="dosomething.html" />
+    <Content Include="images\dosomething.png" />
     <Content Include="thanks.html" />
     <Content Include="images\corkboard-background.png" />
     <Content Include="dsservice.svc" />
