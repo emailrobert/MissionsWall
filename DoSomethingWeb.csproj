@@ -142,6 +142,7 @@
       <LastGenOutput>do_something.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\GATE Publish.pubxml" />
     <None Include="Properties\PublishProfiles\GATE.COM Publish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
