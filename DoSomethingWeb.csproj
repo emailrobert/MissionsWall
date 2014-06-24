@@ -108,8 +108,8 @@
     <Content Include="assets\jqwidgets\styles\images\icon-left.png" />
     <Content Include="assets\jqwidgets\styles\images\icon-right.png" />
     <Content Include="assets\jqwidgets\styles\jqx.base.css" />
-    <Content Include="dosomething\index.html" />
-    <Content Include="dosomething\thanks.html" />
+    <Content Include="dosomething.html" />
+    <Content Include="thanks.html" />
     <Content Include="images\corkboard-background.png" />
     <Content Include="dsservice.svc" />
     <Content Include="images\back-8.jpg" />
@@ -117,8 +117,8 @@
     <Content Include="images\logo.png" />
     <Content Include="images\twitter.png" />
     <Content Include="index.html" />
-    <Content Include="dosomething\manage.html" />
-    <Content Include="ministrywall\index.html" />
+    <Content Include="manage.html" />
+    <Content Include="ministrywall.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
