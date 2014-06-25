@@ -78,8 +78,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\crossway.css" />
-    <Content Include="assets\crossway.min.css" />
+    <Content Include="assets\crossway_white.min.css" />
     <Content Include="assets\jquery-2.1.1.min.js" />
     <Content Include="assets\jquery-ui.css" />
     <Content Include="assets\jquery-ui.min.js" />

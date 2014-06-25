@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Crossway Church Do Something</title>
@@ -7,8 +7,9 @@
 
 	<link rel="stylesheet" href="assets/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="assets/jquery-ui.css">
-    <link rel="stylesheet" href="assets/crossway.css" />
+    <link rel="stylesheet" href="assets/crossway_white.min.css" />
     <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" /> 
+    <link href="//cdn1.editmysite.com/editor/fonts/Bebas/font.css?2" rel="stylesheet" type="text/css">
 	<script src="assets/jquery-2.1.1.min.js"></script>
 	<script src="assets/jquery.mobile-1.4.2.min.js"></script>
     <script src="assets/jquery-ui.min.js"></script>
@@ -295,13 +296,18 @@
 	        width:100%; 
             position: relative;
             height: 100%;
-            max-width:600px;
+            max-width:400px;
             margin: 0px auto 0px auto 
         }
 
         .social
         {
             text-align:center;
+        }
+
+        .titlebar
+        {
+            font-size: 40px; padding: .5em 0 .2em 0; line-height: 1.2; font-family: 'Bebas', sans-serif; font-weight: normal; color: #3b3b3b; text-transform: uppercase;
         }
 
         .left {
@@ -374,7 +380,7 @@
 </head>
 <body>
 
-<div data-role="page" data-theme="a">
+<div data-role="page">
 
 	<div data-role="header" class="page-header home-page-header">
 		<h1>Crossway Church</h1>
@@ -384,7 +390,17 @@
         <div class="logo">
             <img style="width:100%" src="images/dosomething.png">
         </div>
-        <h3>Enter a new Crossway Do Something event!</h3>
+        <h3 class="titlebar">
+            enter your
+            <span style="line-height: 0; display: none;">﻿</span>
+            <font color="#5e591e">"do something"</font>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            event here
+            <br />
+        </h3>
         <!--<form id="JqAjaxForm">    -->     
 		    <label for="ds_name">Contact name for this service opportunity:</label>
             <input maxlength="25" type="text" name="name" id="ds_name" value=""><br />
@@ -429,7 +445,7 @@
             </div>
             <!--<input style="width:100%" type="Submit" " value="Submit">-->
         <!--</form>-->
-        <input style="width:100%" type="button" onclick="AddDoSomething()" id="ds_submit" value="Submit">
+        <input style="width:100%;background-color:#29abe2;color:white" type="button" onclick="AddDoSomething()" id="ds_submit" value="Submit">
         <!--<div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
 			<div data-role="header" data-theme="a" class="ui-corner-top">
 				<h1>Success!</h1>
