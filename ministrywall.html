@@ -12,7 +12,7 @@
     
     
     <style>
-        div.logo {
+        /*div.logo {
 	        width:100%; 
 	        height:220px; 
 	        background:url(images/logo.png) top center no-repeat;
@@ -35,7 +35,7 @@
             line-height:2em;
             margin-left:4px;
             margin-right:4px;
-        }
+        }*/
 
         .container
         {
@@ -180,7 +180,6 @@
     </style>
     <script>
 
-        var url = 'http://visitcrossway.com/dsservice.svc/';
         var urllocal = 'dsservice.svc/';
 
         function GetAllApprovedDoSomethings() {
@@ -191,11 +190,9 @@
             $.ajax({
                 type: "GET",
                 url: urllocal + "GetAllApprovedDoSomethings",
-                //contentType: "application/json",
                 data: { dsId: '83fbed3c-8965-4e30-b213-2d7412881be6' },
                 dataType: "json",
                 success: function (result) {
-
                     
                     var numpages = Math.floor(result.length / 8);
                     var rem = result.length % 8;
@@ -260,70 +257,73 @@
                         divcounter++;
                     }
 
-                    var timer = setInterval(function () {
+                    if (numpages != 1) {
 
-                        currentpage++;
-                        divcounter = 0;
+                        var timer = setInterval(function () {
 
-                        if (currentpage > numpages) {
-                            currentpage = 1
-                        };
+                            currentpage++;
+                            divcounter = 0;
 
-                        var startpoint = (currentpage * 8) - 8;
-                        endpoint = startpoint + 8;
+                            if (currentpage > numpages) {
+                                currentpage = 1
+                            };
 
-                        if (endpoint > numfliers) {
-                            endpoint = numfliers;
-                            var cdstart = endpoint - startpoint;
-                            for (j = cdstart; j < 8; j++) {
-                                currentcell = "#flier" + j;
-                                $(currentcell + "title").html("");
-                                $(currentcell + "desc").html("");
-                                $(currentcell + "poc").html("");
-                                $(currentcell + "date").html("");
-                                $(currentcell + "location").html("");
-                                $(currentcell + "qr").html("");
-                            }
-                        }
+                            var startpoint = (currentpage * 8) - 8;
+                            endpoint = startpoint + 8;
 
-
-                        for (i = startpoint; i < endpoint; i++) {
-                            datestring = "";
-                            if (result[i].startdate != "") {
-                                datestring = result[i].startdate;
-                            }
-                            if (result[i].enddate != "" && result[i].enddate != result[i].startdate) {
-                                datestring = datestring + "-" + result[i].enddate;
-                            }
-                            if (result[i].starttime != "") {
-                                datestring = datestring + "<br>" + result[i].starttime;
-                            }
-                            if (result[i].endtime != "" && result[i].endtime != result[i].starttime) {
-                                datestring = datestring + "-" + result[i].endtime;
+                            if (endpoint > numfliers) {
+                                endpoint = numfliers;
+                                var cdstart = endpoint - startpoint;
+                                for (j = cdstart; j < 8; j++) {
+                                    currentcell = "#flier" + j;
+                                    $(currentcell + "title").html("");
+                                    $(currentcell + "desc").html("");
+                                    $(currentcell + "poc").html("");
+                                    $(currentcell + "date").html("");
+                                    $(currentcell + "location").html("");
+                                    $(currentcell + "qr").html("");
+                                }
                             }
 
-                            currentcell = "#flier" + divcounter;
 
-                            email = result[i].contactemail;
-                            email = email.toLowerCase();
+                            for (i = startpoint; i < endpoint; i++) {
+                                datestring = "";
+                                if (result[i].startdate != "") {
+                                    datestring = result[i].startdate;
+                                }
+                                if (result[i].enddate != "" && result[i].enddate != result[i].startdate) {
+                                    datestring = datestring + "-" + result[i].enddate;
+                                }
+                                if (result[i].starttime != "") {
+                                    datestring = datestring + "<br>" + result[i].starttime;
+                                }
+                                if (result[i].endtime != "" && result[i].endtime != result[i].starttime) {
+                                    datestring = datestring + "-" + result[i].endtime;
+                                }
 
-                            qrstring = result[i].eventtitle + "|" + result[i].startdate + "|" + result[i].contactname + "|" + result[i].contactemail + "|(" + result[i].contactareacode + ")|" + result[i].contactprefix + "-" + result[i].contactnumber
-                            qrstring = qrstring.replace(/ /g, "+");
-                            qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
+                                currentcell = "#flier" + divcounter;
+
+                                email = result[i].contactemail;
+                                email = email.toLowerCase();
+
+                                qrstring = result[i].eventtitle + "|" + result[i].startdate + "|" + result[i].contactname + "|" + result[i].contactemail + "|(" + result[i].contactareacode + ")|" + result[i].contactprefix + "-" + result[i].contactnumber
+                                qrstring = qrstring.replace(/ /g, "+");
+                                qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
 
 
-                            $(currentcell + "title").html(result[i].eventtitle);
-                            $(currentcell + "desc").html(result[i].eventdesc);
-                            $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
-                            $(currentcell + "date").html(datestring);
-                            $(currentcell + "location").html(result[i].eventlocation);
-                            $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
+                                $(currentcell + "title").html(result[i].eventtitle);
+                                $(currentcell + "desc").html(result[i].eventdesc);
+                                $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
+                                $(currentcell + "date").html(datestring);
+                                $(currentcell + "location").html(result[i].eventlocation);
+                                $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
 
-                            divcounter++;
-                        }
+                                divcounter++;
+                            }
 
 
-                    }, 10000)
+                        }, 20000)
+                    }
                 },
                 error: function (textStatus) {
                     alert('Error returned from GetDoSomething');
