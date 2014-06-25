@@ -329,6 +329,39 @@
         
     </style>
     <script>
+       
+        function validateFields() {
+            var error = "";
+            if ($("#ds_name").val() == "") {
+                error = "You didn't enter a contact name.\n";
+            }
+
+            if ($("#ds_email").val() == "") {
+                error += "You didn't enter a contact email.\n";
+            }
+
+            if ($("#ds_areacode").val() == "" || $("#ds_prefix").val() == "" || $("#ds_number").val() == "") {
+                error += "You didn't enter a complete phone number.\n";
+            }
+
+            if ($("#ds_areacode").val().length != 3 || $("#ds_prefix").val().length != 3 || $("#ds_number").val().length != 4) {
+                error += "You didn't enter a complete phone number.\n";
+            }
+
+            if ($("#ds_title").val() == "") {
+                error += "You didn't enter a event title.\n";
+            }
+
+            if ($("#ds_desc").val() == "") {
+                error += "You didn't enter a event description.\n";
+            }
+
+            return error;
+        };
+
+    </script>
+
+    <script>
 
         var url = 'http://visitcrossway.com/dsservice.svc/';
         var urllocal = 'dsservice.svc/';
@@ -359,6 +392,16 @@
         var urllocal = 'dsservice.svc/';
 
         function AddDoSomething() {
+
+            var reason = "";
+
+            reason += validateFields();
+
+            if (reason != "") {
+                alert("Some fields need correction:\n" + reason);
+                return false;
+            }
+
             $("#waitDialog").popup("open")
             var today = new Date();
             var dd = today.getDate();
@@ -401,47 +444,47 @@
             event here
             <br />
         </h2>
-		    <label for="ds_name">Contact name for this service opportunity:</label>
-            <input maxlength="25" type="text" name="name" id="ds_name" value=""><br />
-            <label for="ds_email">Contact email:</label>
-            <input maxlength="40" type="text" name="email" id="ds_email" value=""><br />
-            <label for="ds_phone">Contact phone number:</label>
-            <div class="left">
-                <input title="areacode" pattern="[0-9]*" maxlength="3" type="text" name="phone" id="ds_areacode")>
+		<label for="ds_name">Contact name for this service opportunity:*</label>
+        <input required="required" maxlength="25" type="text" name="name" id="ds_name" value=""><br />
+        <label for="ds_email">Contact email:*</label>
+        <input maxlength="40" type="text" name="email" id="ds_email" value=""><br />
+        <label for="ds_phone">Contact phone number:*</label>
+        <div class="left">
+            <input title="areacode" pattern="[0-9]*" maxlength="3" type="text" name="phone" id="ds_areacode")>
+        </div>
+        <div class="right">
+            -
+        </div>
+        <div class="left">
+            <input title="prefix" pattern="[0-9]*" maxlength="3" type="text" name="phone1" id="ds_prefix")>
+        </div>
+        <div class="right">
+            -
+        </div>
+        <div class="left">
+            <input title="number" pattern="[0-9]*" maxlength="4" type="text" name="phone2" id="ds_number")>
+        </div>
+        <br /><br /><br /><br />
+        <label for="ds_title">Service Opportunity Title:* (Soup Kitchen Volunteer) Max 25 Characters</label>
+        <input maxlength="25" type="text" name="title" id="ds_title" value=""><br />
+        <label for="ds_desc">Service Description:* (Getting a group together to serve at the soup kitchen, blah, blah,)</label>
+        <textarea maxlength="115" name="desc" id="ds_desc"></textarea>
+        <label for="ds_location">Extra information (optional): ("Meet at church", or "Bring your tools!")</label>
+        <input maxlength="30" type="text" name="location" id="ds_location" value=""><br />
+        <label><input type="checkbox" id="ds_ongoing" name="ds_ongoing" checked="checked" onclick="toggleStatus()"> Ongoing Event or need (no dates required)</label>
+        <div id="datestuff">
+            <p>Start Date (optional, if this is an ongoing need no date may be necessary): <input disabled="disabled" type="text" id="ds_startdate"></p>
+            <div class="ui-widget">
+                <label for="ds_starttime">Start Time: </label>
+                <input id="ds_starttime" disabled="disabled">
             </div>
-            <div class="right">
-                -
+            <p>End Date (optional, leave blank if the event starts and ends on same day): <input type="text" id="ds_enddate" disabled="disabled"></p>
+            <div class="ui-widget">
+                <label for="ds_endtime">End Time: </label>
+                <input id="ds_endtime" disabled="disabled">
             </div>
-            <div class="left">
-                <input title="prefix" pattern="[0-9]*" maxlength="3" type="text" name="phone1" id="ds_prefix")>
-            </div>
-            <div class="right">
-                -
-            </div>
-            <div class="left">
-                <input title="number" pattern="[0-9]*" maxlength="4" type="text" name="phone2" id="ds_number")>
-            </div>
-            <br /><br /><br /><br />
-            <label for="ds_title">Service Opportunity Title: (Soup Kitchen Volunteer) Max 25 Characters</label>
-            <input maxlength="25" type="text" name="title" id="ds_title" value=""><br />
-            <label for="ds_desc">Service Description: (Getting a group together to serve at the soup kitchen, blah, blah,)</label>
-            <textarea maxlength="115" name="desc" id="ds_desc"></textarea>
-            <label for="ds_location">Extra information (optional): ("Meet at church", or "Bring your tools!")</label>
-            <input maxlength="30" type="text" name="location" id="ds_location" value=""><br />
-            <label><input type="checkbox" id="ds_ongoing" name="ds_ongoing" checked="checked" onclick="toggleStatus()"> Ongoing Event or need (no dates required)</label>
-            <div id="datestuff">
-                <p>Start Date (optional, if this is an ongoing need no date may be necessary): <input disabled="disabled" type="text" id="ds_startdate"></p>
-                <div class="ui-widget">
-                  <label for="ds_starttime">Start Time: </label>
-                  <input id="ds_starttime" disabled="disabled">
-                </div>
-                <p>End Date (optional, leave blank if the event starts and ends on same day): <input type="text" id="ds_enddate" disabled="disabled"></p>
-                <div class="ui-widget">
-                  <label for="ds_endtime">End Time: </label>
-                  <input id="ds_endtime" disabled="disabled">
-                </div>
-            </div>
-        <input style="width:100%;background-color:#29abe2;color:white" type="button" onclick="AddDoSomething()" id="ds_submit" value="Submit">
+        </div>
+        <input style="width:100%;background-color:#29abe2;color:white" type="submit" onclick="AddDoSomething()" id="ds_submit" value="Submit">
         <div data-role="popup" id="popupDialog">
 	        <p>Done<p>
         </div>
