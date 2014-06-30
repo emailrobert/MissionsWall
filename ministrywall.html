@@ -40,10 +40,12 @@
         .container
         {
             position:absolute;
+            top: 0px;
+            left: 0px;
             width:1920px;
-            overflow:auto;
             height:1080px;
             background-image:url(images/corkboard-background.png);
+            margin:0px 0px 0px 0px;
         }
 
         .flier0
@@ -53,7 +55,10 @@
            width:380px;
            height:430px;
            top:70px;
-           left:110px;
+           left:115px;
+           transform:rotate(3deg);
+           -ms-transform:rotate(3deg); /* IE 9 */
+           -webkit-transform:rotate(3deg); /* Opera, Chrome, and Safari */
         }
 
         .flier1
@@ -62,7 +67,10 @@
            width:380px;
            height:430px;
            top:70px;
-           left:565px;
+           left:545px;
+           transform:rotate(-2deg);
+           -ms-transform:rotate(-2deg); /* IE 9 */
+           -webkit-transform:rotate(-2deg); /* Opera, Chrome, and Safari */
         }
 
         .flier2
@@ -72,6 +80,9 @@
            height:430px;
            top:60px;
            left:980px;
+           transform:rotate(-3deg);
+           -ms-transform:rotate(-3deg); /* IE 9 */
+           -webkit-transform:rotate(-3deg); /* Opera, Chrome, and Safari */
         }
 
         .flier3
@@ -80,7 +91,10 @@
            width:380px;
            height:430px;
            top:70px;
-           left:1420px;
+           left:1425px;
+           transform:rotate(-2deg);
+           -ms-transform:rotate(-2deg); /* IE 9 */
+           -webkit-transform:rotate(-2deg); /* Opera, Chrome, and Safari */
         }
 
         .flier4
@@ -88,8 +102,11 @@
            position:absolute;
            width:380px;
            height:430px;
-           top:560px;
-           left:90px;
+           top:570px;
+           left:120px;
+           transform:rotate(-3deg);
+           -ms-transform:rotate(-3deg); /* IE 9 */
+           -webkit-transform:rotate(-3deg); /* Opera, Chrome, and Safari */
         }
 
         .flier5
@@ -97,8 +114,8 @@
            position:absolute;
            width:380px;
            height:430px;
-           top:580px;
-           left:540px;
+           top:590px;
+           left:580px;
         }
 
         .flier6
@@ -106,8 +123,11 @@
            position:absolute;
            width:380px;
            height:430px;
-           top:570px;
-           left:1000px;
+           top:590px;
+           left:1025px;
+           transform:rotate(3deg);
+           -ms-transform:rotate(3deg); /* IE 9 */
+           -webkit-transform:rotate(3deg); /* Opera, Chrome, and Safari */
         }
 
         .flier7
@@ -116,7 +136,10 @@
            width:380px;
            height:430px;
            top:570px;
-           left:1420px;
+           left:1480px;
+           transform:rotate(-2deg);
+           -ms-transform:rotate(-2deg); /* IE 9 */
+           -webkit-transform:rotate(-2deg); /* Opera, Chrome, and Safari */
         }
 
         .title
@@ -151,7 +174,7 @@
         {
             font-family:Arial;
             font-weight: bold;
-            font-size:16px;
+            font-size:20px;
             text-align:center;
             width:100%;
         }
@@ -175,6 +198,18 @@
             font-size:20px;
             text-align:center;
             width:100%;
+        }
+
+        .tab0
+        {
+            width:90px;
+            height:100px;
+            text-align:center;
+            position:relative;
+            left:100px;
+            transform:rotate(90deg);
+            -ms-transform:rotate(90deg); /* IE 9 */
+            -webkit-transform:rotate(90deg); /* Opera, Chrome, and Safari */
         }
         
     </style>
