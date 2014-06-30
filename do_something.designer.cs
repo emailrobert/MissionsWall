@@ -300,7 +300,7 @@ namespace DoSomethingWeb
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventdesc", DbType="VarChar(130)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventdesc", DbType="VarChar(160)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
 		public string eventdesc
 		{

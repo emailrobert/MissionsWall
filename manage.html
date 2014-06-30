@@ -85,7 +85,7 @@
 
             $("#jqxgrid").jqxGrid(
             {
-                width: 1050,
+                width: 1100,
                 source: dataAdapter,
                 pageable: true,
                 autoheight: true,
@@ -128,6 +128,44 @@
                   },
                   { text: 'Post?', dataField: 'approved', columntype: 'checkbox', width: '50px' },
 
+                  //{
+                  //    text: 'Post?', dataField: 'approved', width: '90px', cellsrenderer: function (row, col, value, defaulthtml) {
+                  //        if (value == true) {
+                  //            return '<span style="background-color: #03ff1b;">' + 'Unpost?' + '</span>';
+                  //            //return "Unpost?";
+                  //        } else {
+                  //            return '<span style="background-color: #f6ff03;">' + 'Post?' + '</span>';
+                  //            //return "Post?";
+                  //        }
+                          
+                  //    }, buttonclick: function (row) {
+
+                  //        var r = confirm("Delete Do Domething?");
+                  //        if (r == true) {
+                  //            editrowindex = row;
+
+                  //            var id = $("#jqxgrid").jqxGrid('getcellvalue', editrowindex, "uid");
+                  //            var rid = $("#jqxgrid").jqxGrid('getrowid', editrowindex);
+
+                  //            $.ajax({
+                  //                type: "GET",
+                  //                url: "dsservice.svc/DeleteDoSomething",
+                  //                contentType: "application/json",
+                  //                data: { dsId: id },
+
+                  //                success: function (result) {
+                  //                    $("#jqxgrid").jqxGrid('deleterow', rid);
+                  //                },
+                  //                error: function (textStatus) {
+                  //                    alert("Error Deleted Do Something Record");
+                  //                }
+                  //            });
+                  //        } else {
+
+                  //        }
+                  //    }
+                  //},
+
                   {
                       text: 'Delete', datafield: 'Delete', columntype: 'button', width: '50px', cellsrenderer: function () {
                           return "Delete";
@@ -136,6 +174,7 @@
                           var r = confirm("Delete Do Domething?");
                           if (r == true) {
                               editrowindex = row;
+
                               var id = $("#jqxgrid").jqxGrid('getcellvalue', editrowindex, "uid");
                               var rid = $("#jqxgrid").jqxGrid('getrowid', editrowindex);
 
