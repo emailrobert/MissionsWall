@@ -113,7 +113,6 @@ namespace DoSomethingWeb
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
         public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved, string submittername, string submitteremail)
-        //public void AddDoSomething(string contactname, string contactemail)
         {
             try
             {
@@ -254,7 +253,7 @@ namespace DoSomethingWeb
                 {
                     string customerbody = "Your Do Something Posting Has Been Approved!" + Environment.NewLine + s.eventtitle + Environment.NewLine + s.eventdesc + Environment.NewLine + s.eventlocation + Environment.NewLine + Environment.NewLine + "If you ever need to update or change this event click this link:" + Environment.NewLine + "http://visitcrossway.com/es.html?uid=" + dsId + Environment.NewLine + Environment.NewLine + "You can see your posting live here!" + Environment.NewLine + "http://ministrywall.visitcrossway.org";
                     Globals gf = new Globals();
-                    gf.MailMessage("dosomething@visitcrossway.org", s.contactemail, "Do Something Approved!", customerbody, "");
+                    gf.MailMessage("dosomething@visitcrossway.org", s.submitteremail, "Do Something Approved!", customerbody, "");
                 }
             }
             catch (Exception ex)
@@ -278,7 +277,7 @@ namespace DoSomethingWeb
 
                 string customerbody = "Your Do Something Update Link for this post" + Environment.NewLine + Environment.NewLine + s.eventtitle + Environment.NewLine + s.eventdesc + Environment.NewLine + s.eventlocation + Environment.NewLine + Environment.NewLine + "Click this link to update this post:" + Environment.NewLine + "http://visitcrossway.com/es.html?uid=" + dsId + Environment.NewLine + Environment.NewLine + "You can see your posting live here once approved:" + Environment.NewLine + "http://ministrywall.visitcrossway.org";
                 Globals gf = new Globals();
-                gf.MailMessage("dosomething@visitcrossway.org", s.contactemail, "Do Something Update Link", customerbody, "");
+                gf.MailMessage("dosomething@visitcrossway.org", s.submitteremail, "Do Something Update Link", customerbody, "");
             }
             catch (Exception ex)
             {

@@ -307,7 +307,7 @@
 
         .titlebar
         {
-            font-size: 40px; padding: .5em 0 .2em 0; line-height: 1.2; font-family: 'Bebas', sans-serif; font-weight: normal; color: #3b3b3b; text-transform: uppercase;
+            font-size: 40px; font-family: 'Bebas', sans-serif; font-weight: normal; color: #3b3b3b; text-transform: uppercase;
         }
 
         .left {
@@ -418,6 +418,12 @@
             });
         }
     </script>
+    <script>
+        function copyAbove() {
+            $("#ds_name").val($("#ds_submittername").val());
+            $("#ds_email").val($("#ds_submitteremail").val());
+        };
+    </script>
 </head>
 <body>
 
@@ -431,10 +437,10 @@
         <div class="logo">
             <img style="width:100%" src="images/dosomething.png">
         </div>
-        <label for="ds_submittername">Submitter name:* (Your name typing in this form)</label>
+        <label for="ds_submittername">Submitter name:*</label>
         <input required="required" maxlength="25" type="text" name="name" id="ds_submittername" value=""><br />
         <label for="ds_submitteremail">Submitter email:*</label>
-        <input maxlength="40" type="text" name="email" id="ds_submitteremail" value=""><br />
+        <input maxlength="40" type="text" name="email" id="ds_submitteremail" value="">
         <h2 class="titlebar">
             enter your
             <span style="line-height: 0; display: none;">﻿</span>
@@ -446,6 +452,7 @@
             event here
             <br />
         </h2>
+        <label><input type="checkbox" id="ds_sameasabove" onclick="copyAbove()"> Click here if this information is the same as above</label>
 		<label for="ds_name">Contact name for this service opportunity:*</label>
         <input required="required" maxlength="25" type="text" name="name" id="ds_name" value=""><br />
         <label for="ds_email">Contact email for this service opportunity:*</label>
