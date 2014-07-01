@@ -112,7 +112,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved)
+        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved, string submittername, string submitteremail)
         //public void AddDoSomething(string contactname, string contactemail)
         {
             try
@@ -121,6 +121,8 @@ namespace DoSomethingWeb
                 dosomething d = new dosomething
                 {
                     Id = newg,
+                    submittername = submittername,
+                    submitteremail = submitteremail,
                     contactname = contactname,
                     contactemail = contactemail,
                     contactareacode = contactareacode,
@@ -148,7 +150,7 @@ namespace DoSomethingWeb
 
                 Globals gf = new Globals();
                 gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Submission", messagebody, "");
-                gf.MailMessage("dosomething@visitcrossway.org", contactemail, "Do Something Submission", customerbody, "");
+                gf.MailMessage("dosomething@visitcrossway.org", submitteremail, "Do Something Submission", customerbody, "");
             }
             catch (Exception ex)
             {
@@ -222,7 +224,7 @@ namespace DoSomethingWeb
 
                 Globals gf = new Globals();
                 gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Updated", messagebody, "");
-                gf.MailMessage("dosomething@visitcrossway.org", contactemail, "Do Something Updated", customerbody, "");
+                gf.MailMessage("dosomething@visitcrossway.org", s.submitteremail, "Do Something Updated", customerbody, "");
 
             }
             catch (Exception ex)

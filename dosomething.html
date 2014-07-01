@@ -407,7 +407,7 @@
                 type: "GET",
                 url: urllocal + "AddDoSomething",
                 contentType: "application/json",
-                data: { contactname: $("#ds_name").val(), contactemail: $("#ds_email").val(), contactareacode: $("#ds_areacode").val(), contactprefix: $("#ds_prefix").val(), contactnumber: $("#ds_number").val(), eventtitle: $("#ds_title").val(), eventdesc: $("#ds_desc").val(), eventlocation: $("#ds_location").val(), startdate: $("#ds_startdate").val(), starttime: $("#ds_starttime").val(), enddate: $("#ds_enddate").val(), endtime: $("#ds_endtime").val(), approved: false }, 
+                data: { contactname: $("#ds_name").val(), contactemail: $("#ds_email").val(), contactareacode: $("#ds_areacode").val(), contactprefix: $("#ds_prefix").val(), contactnumber: $("#ds_number").val(), eventtitle: $("#ds_title").val(), eventdesc: $("#ds_desc").val(), eventlocation: $("#ds_location").val(), startdate: $("#ds_startdate").val(), starttime: $("#ds_starttime").val(), enddate: $("#ds_enddate").val(), endtime: $("#ds_endtime").val(), approved: false, submittername: $("#ds_submittername").val(), submitteremail: $("#ds_submitteremail").val() },
                 success: function (result) {
                     $("#waitDialog").popup("close")
                     window.location.href = "thanks.html";
@@ -431,6 +431,10 @@
         <div class="logo">
             <img style="width:100%" src="images/dosomething.png">
         </div>
+        <label for="ds_submittername">Submitter name:* (Your name typing in this form)</label>
+        <input required="required" maxlength="25" type="text" name="name" id="ds_submittername" value=""><br />
+        <label for="ds_submitteremail">Submitter email:*</label>
+        <input maxlength="40" type="text" name="email" id="ds_submitteremail" value=""><br />
         <h2 class="titlebar">
             enter your
             <span style="line-height: 0; display: none;">﻿</span>
@@ -444,7 +448,7 @@
         </h2>
 		<label for="ds_name">Contact name for this service opportunity:*</label>
         <input required="required" maxlength="25" type="text" name="name" id="ds_name" value=""><br />
-        <label for="ds_email">Contact email:*</label>
+        <label for="ds_email">Contact email for this service opportunity:*</label>
         <input maxlength="40" type="text" name="email" id="ds_email" value=""><br />
         <label for="ds_phone">Contact phone number:*</label>
         <div class="left">

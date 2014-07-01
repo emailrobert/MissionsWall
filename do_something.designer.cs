@@ -112,6 +112,10 @@ namespace DoSomethingWeb
 		
 		private string _submissiondate;
 		
+		private string _submittername;
+		
+		private string _submitteremail;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -146,6 +150,10 @@ namespace DoSomethingWeb
     partial void OnapprovedChanged();
     partial void OnsubmissiondateChanging(string value);
     partial void OnsubmissiondateChanged();
+    partial void OnsubmitternameChanging(string value);
+    partial void OnsubmitternameChanged();
+    partial void OnsubmitteremailChanging(string value);
+    partial void OnsubmitteremailChanged();
     #endregion
 		
 		public dosomething()
@@ -464,6 +472,48 @@ namespace DoSomethingWeb
 					this._submissiondate = value;
 					this.SendPropertyChanged("submissiondate");
 					this.OnsubmissiondateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_submittername", DbType="VarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16)]
+		public string submittername
+		{
+			get
+			{
+				return this._submittername;
+			}
+			set
+			{
+				if ((this._submittername != value))
+				{
+					this.OnsubmitternameChanging(value);
+					this.SendPropertyChanging();
+					this._submittername = value;
+					this.SendPropertyChanged("submittername");
+					this.OnsubmitternameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_submitteremail", DbType="VarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17)]
+		public string submitteremail
+		{
+			get
+			{
+				return this._submitteremail;
+			}
+			set
+			{
+				if ((this._submitteremail != value))
+				{
+					this.OnsubmitteremailChanging(value);
+					this.SendPropertyChanging();
+					this._submitteremail = value;
+					this.SendPropertyChanged("submitteremail");
+					this.OnsubmitteremailChanged();
 				}
 			}
 		}
