@@ -14,6 +14,9 @@
 	<script src="assets/jquery.mobile-1.4.2.min.js"></script>
     <script src="assets/jquery-ui.min.js"></script>
     <script>
+
+        var uid;
+
         $(document).ready(function () {
             //called when key is pressed in textbox
             $("#ds_areacode").keypress(function (e) {
@@ -49,6 +52,32 @@
         $(function () {
             $("#ds_enddate").datepicker({ showOptions: { showAnim: "slideDown" } });
         });
+    </script>
+
+    <script>
+
+        function DeleteDoSomething(row) {
+
+            var r = confirm("Delete This Do Domething?");
+            if (r == true) {
+
+                $.ajax({
+                    type: "GET",
+                    url: "dsservice.svc/DeleteDoSomething",
+                    contentType: "application/json",
+                    data: { dsId: uid },
+
+                    success: function (result) {
+                        window.location.href = "deleted.html";
+                    },
+                    error: function (textStatus) {
+                        alert("Error Deleted Do Something Record");
+                    }
+                });
+            } else {
+
+            }
+        }
     </script>
     <script>
         $(function () {
@@ -271,6 +300,7 @@
                 }
             });
         });
+
         function toggleStatus() {
             if ($('#ds_ongoing').is(':checked')) {
                 $("#ds_startdate").textinput("disable");
@@ -329,8 +359,6 @@
         
     </style>
     <script>
-
-        var uid;
        
         function validateFields() {
             var error = "";
@@ -503,7 +531,9 @@
                 <input id="ds_endtime" disabled="disabled">
             </div>
         </div>
-        <input style="width:100%;background-color:#29abe2;color:white" type="submit" onclick="UpdateDoSomethings()" id="ds_submit" value="Update">
+        <input style="width:100%;background-color:#29abe2;color:white" type="submit" onclick="UpdateDoSomethings()" id="ds_submit" value="Update Do Something">
+       <label> </label>
+        <input style="width:100%;background-color:red;color:white" type="submit" onclick="DeleteDoSomething()" id="ds_delete" value="Delete Do Something">
         <div data-role="popup" id="popupDialog">
 	        <p>Done<p>
         </div>
