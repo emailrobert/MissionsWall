@@ -186,6 +186,53 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        public void UpdateDoSomethings(Guid dsId, string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime)
+        {
+            try
+            {
+
+                DoSomethingDataContext ds = new DoSomethingDataContext();
+
+                var sl = from n in ds.dosomethings
+                         where n.Id == dsId
+                         select n;
+
+                dosomething s = sl.First<dosomething>();
+
+                s.contactname = contactname;
+                s.contactemail = contactemail;
+                s.contactareacode = contactareacode;
+                s.contactprefix = contactprefix;
+                s.contactnumber = contactnumber;
+                s.eventtitle = eventtitle;
+                s.eventdesc = eventdesc;
+                s.eventlocation = eventlocation;
+                s.startdate = startdate;
+                s.starttime = starttime;
+                s.enddate = enddate;
+                s.endtime = endtime;
+                s.approved = false;
+                s.submissiondate = DateTime.Now.ToString();
+                ds.SubmitChanges();
+
+                string managers = ConfigurationManager.AppSettings["DoSomethingManagers"];
+
+                string messagebody = "A Do Something has been updated." + Environment.NewLine + Environment.NewLine + contactname + Environment.NewLine + contactemail + Environment.NewLine + contactareacode + "-" + contactprefix + "-" + contactnumber + Environment.NewLine + eventtitle + Environment.NewLine + eventdesc + Environment.NewLine + eventlocation + Environment.NewLine + "http://manage.visitcrossway.org";
+                string customerbody = "Thank you for updating your Do Something posting!" + Environment.NewLine + Environment.NewLine + contactname + Environment.NewLine + contactemail + Environment.NewLine + contactareacode + "-" + contactprefix + "-" + contactnumber + Environment.NewLine + eventtitle + Environment.NewLine + eventdesc + Environment.NewLine + eventlocation + Environment.NewLine + "If you ever need to update or change this event click this link:" + Environment.NewLine + "http://visitcrossway.com/es.html?uid=" + dsId + Environment.NewLine + Environment.NewLine + "Once approved, your post will show up on the live display wall!" + Environment.NewLine + Environment.NewLine + "Go to the live display wall here:" + Environment.NewLine + "http://ministrywall.visitcrossway.org";
+
+                Globals gf = new Globals();
+                gf.MailMessage("dosomething@visitcrossway.org", managers, "Do Something Updated", messagebody, "");
+                gf.MailMessage("dosomething@visitcrossway.org", contactemail, "Do Something Updated", customerbody, "");
+
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Error Updating DoSomethings", ex.Message);
+            }
+        }
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
         public void ChangeDoSomethingStatus(Guid dsId, bool approved)
         {
             try
@@ -203,7 +250,7 @@ namespace DoSomethingWeb
 
                 if (approved == true)
                 {
-                    string customerbody = "Your Do Something Posting Has Been Approved!" + Environment.NewLine + s.eventtitle + Environment.NewLine + s.eventdesc + Environment.NewLine + s.eventlocation + Environment.NewLine + Environment.NewLine + "Go see it here:" + Environment.NewLine + "http://ministrywall.visitcrossway.org";
+                    string customerbody = "Your Do Something Posting Has Been Approved!" + Environment.NewLine + s.eventtitle + Environment.NewLine + s.eventdesc + Environment.NewLine + s.eventlocation + Environment.NewLine + Environment.NewLine + "If you ever need to update or change this event click this link:" + Environment.NewLine + "http://visitcrossway.com/es.html?uid=" + dsId + Environment.NewLine + Environment.NewLine + "You can see your posting live here!" + Environment.NewLine + "http://ministrywall.visitcrossway.org";
                     Globals gf = new Globals();
                     gf.MailMessage("dosomething@visitcrossway.org", s.contactemail, "Do Something Approved!", customerbody, "");
                 }

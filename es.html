@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Crossway Church Do Something</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="assets/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="assets/jquery-ui.css">
+    <link rel="stylesheet" href="assets/crossway_white.min.css" />
+    <link rel="stylesheet" href="assets/jquery.mobile.icons.min.css" /> 
+    <link href="//cdn1.editmysite.com/editor/fonts/Bebas/font.css?2" rel="stylesheet" type="text/css">
+	<script src="assets/jquery-2.1.1.min.js"></script>
+	<script src="assets/jquery.mobile-1.4.2.min.js"></script>
+    <script src="assets/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#ds_areacode").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+            $("#ds_prefix").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+            $("#ds_number").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#ds_startdate").datepicker({ showOptions: { showAnim: "slideDown" } });
+        });
+        $(function () {
+            $("#ds_enddate").datepicker({ showOptions: { showAnim: "slideDown" } });
+        });
+    </script>
+    <script>
+        $(function () {
+            var availableTags = [
+              "1:00 AM",
+              "1:15 AM",
+              "1:30 AM",
+              "1:45 AM",
+              "2:00 AM",
+              "2:15 AM",
+              "2:30 AM",
+              "2:45 AM",
+              "3:00 AM",
+              "3:15 AM",
+              "3:30 AM",
+              "3:45 AM",
+              "4:00 AM",
+              "4:15 AM",
+              "4:30 AM",
+              "4:45 AM",
+              "5:00 AM",
+              "5:15 AM",
+              "5:30 AM",
+              "5:45 AM",
+              "6:00 AM",
+              "6:15 AM",
+              "6:30 AM",
+              "6:45 AM",
+              "7:00 AM",
+              "7:15 AM",
+              "7:30 AM",
+              "7:45 AM",
+              "8:00 AM",
+              "8:15 AM",
+              "8:30 AM",
+              "8:45 AM",
+              "9:00 AM",
+              "9:15 AM",
+              "9:30 AM",
+              "9:45 AM",
+              "10:00 AM",
+              "10:15 AM",
+              "10:30 AM",
+              "10:45 AM",
+              "11:00 AM",
+              "11:15 AM",
+              "11:30 AM",
+              "11:45 AM",
+              "12:00 AM",
+              "12:15 AM",
+              "12:30 AM",
+              "12:45 AM",
+              "1:00 PM",
+              "1:15 PM",
+              "1:30 PM",
+              "1:45 PM",
+              "2:00 PM",
+              "2:15 PM",
+              "2:30 PM",
+              "2:45 PM",
+              "3:00 PM",
+              "3:15 PM",
+              "3:30 PM",
+              "3:45 PM",
+              "4:00 PM",
+              "4:15 PM",
+              "4:30 PM",
+              "4:45 PM",
+              "5:00 PM",
+              "5:15 PM",
+              "5:30 PM",
+              "5:45 PM",
+              "6:00 PM",
+              "6:15 PM",
+              "6:30 PM",
+              "6:45 PM",
+              "7:00 PM",
+              "7:15 PM",
+              "7:30 PM",
+              "7:45 PM",
+              "8:00 PM",
+              "8:15 PM",
+              "8:30 PM",
+              "8:45 PM",
+              "9:00 PM",
+              "9:15 PM",
+              "9:30 PM",
+              "9:45 PM",
+              "10:00 PM",
+              "10:15 PM",
+              "10:30 PM",
+              "10:45 PM",
+              "11:00 PM",
+              "11:15 PM",
+              "11:30 PM",
+              "11:45 PM",
+              "12:00 PM",
+              "12:15 PM",
+              "12:30 PM",
+              "12:45 PM"
+            ];
+            $("#ds_starttime").autocomplete({
+                source: function (req, responseFn) {
+                    var re = $.ui.autocomplete.escapeRegex(req.term);
+                    var matcher = new RegExp("^" + re, "i");
+                    var a = $.grep(availableTags, function (item, index) {
+                        return matcher.test(item);
+                    });
+                    responseFn(a);
+                }
+            });
+        });
+        $(function () {
+            var availableTags1 = [
+              "1:00 AM",
+              "1:15 AM",
+              "1:30 AM",
+              "1:45 AM",
+              "2:00 AM",
+              "2:15 AM",
+              "2:30 AM",
+              "2:45 AM",
+              "3:00 AM",
+              "3:15 AM",
+              "3:30 AM",
+              "3:45 AM",
+              "4:00 AM",
+              "4:15 AM",
+              "4:30 AM",
+              "4:45 AM",
+              "5:00 AM",
+              "5:15 AM",
+              "5:30 AM",
+              "5:45 AM",
+              "6:00 AM",
+              "6:15 AM",
+              "6:30 AM",
+              "6:45 AM",
+              "7:00 AM",
+              "7:15 AM",
+              "7:30 AM",
+              "7:45 AM",
+              "8:00 AM",
+              "8:15 AM",
+              "8:30 AM",
+              "8:45 AM",
+              "9:00 AM",
+              "9:15 AM",
+              "9:30 AM",
+              "9:45 AM",
+              "10:00 AM",
+              "10:15 AM",
+              "10:30 AM",
+              "10:45 AM",
+              "11:00 AM",
+              "11:15 AM",
+              "11:30 AM",
+              "11:45 AM",
+              "12:00 AM",
+              "12:15 AM",
+              "12:30 AM",
+              "12:45 AM",
+              "1:00 PM",
+              "1:15 PM",
+              "1:30 PM",
+              "1:45 PM",
+              "2:00 PM",
+              "2:15 PM",
+              "2:30 PM",
+              "2:45 PM",
+              "3:00 PM",
+              "3:15 PM",
+              "3:30 PM",
+              "3:45 PM",
+              "4:00 PM",
+              "4:15 PM",
+              "4:30 PM",
+              "4:45 PM",
+              "5:00 PM",
+              "5:15 PM",
+              "5:30 PM",
+              "5:45 PM",
+              "6:00 PM",
+              "6:15 PM",
+              "6:30 PM",
+              "6:45 PM",
+              "7:00 PM",
+              "7:15 PM",
+              "7:30 PM",
+              "7:45 PM",
+              "8:00 PM",
+              "8:15 PM",
+              "8:30 PM",
+              "8:45 PM",
+              "9:00 PM",
+              "9:15 PM",
+              "9:30 PM",
+              "9:45 PM",
+              "10:00 PM",
+              "10:15 PM",
+              "10:30 PM",
+              "10:45 PM",
+              "11:00 PM",
+              "11:15 PM",
+              "11:30 PM",
+              "11:45 PM",
+              "12:00 PM",
+              "12:15 PM",
+              "12:30 PM",
+              "12:45 PM"
+            ];
+            $("#ds_endtime").autocomplete({
+                source: function (req, responseFn) {
+                    var re = $.ui.autocomplete.escapeRegex(req.term);
+                    var matcher = new RegExp("^" + re, "i");
+                    var a = $.grep(availableTags1, function (item, index) {
+                        return matcher.test(item);
+                    });
+                    responseFn(a);
+                }
+            });
+        });
+        function toggleStatus() {
+            if ($('#ds_ongoing').is(':checked')) {
+                $("#ds_startdate").textinput("disable");
+                $("#ds_enddate").textinput("disable");
+                $("#ds_starttime").textinput("disable");
+                $("#ds_endtime").textinput("disable");
+            } else {
+                $("#ds_startdate").textinput("enable");
+                $("#ds_enddate").textinput("enable");
+                $("#ds_starttime").textinput("enable");
+                $("#ds_endtime").textinput("enable");
+            }
+        }
+  </script>
+    <!--<script>
+        function ValidatePassKey(tb,maxlength,nextId) {
+            if (tb.value.length >= maxlength)
+                document.getElementById(nextId).focus();
+        }
+    </script>-->
+    <style>
+        div.logo {
+	        width:100%; 
+            position: relative;
+            height: 100%;
+            max-width:400px;
+            margin: 0px auto 0px auto 
+        }
+
+        .social
+        {
+            text-align:center;
+        }
+
+        .titlebar
+        {
+            font-size: 40px; padding: .5em 0 .2em 0; line-height: 1.2; font-family: 'Bebas', sans-serif; font-weight: normal; color: #3b3b3b; text-transform: uppercase;
+        }
+
+        .left {
+  float: left;
+  width: 75px;
+  text-align: right;
+  display: inline;
+}
+
+.right {
+  float: left;
+  text-align: right;
+  font-size:x-large;
+  font-size:x-large;
+  line-height:2em;
+  margin-left:4px;
+  margin-right:4px;
+}
+        
+    </style>
+    <script>
+
+        var uid;
+       
+        function validateFields() {
+            var error = "";
+            if ($("#ds_name").val() == "") {
+                error = "You didn't enter a contact name.\n";
+            }
+
+            if ($("#ds_email").val() == "") {
+                error += "You didn't enter a contact email.\n";
+            }
+
+            if ($("#ds_areacode").val() == "" || $("#ds_prefix").val() == "" || $("#ds_number").val() == "") {
+                error += "You didn't enter a complete phone number.\n";
+            }
+
+            if ($("#ds_areacode").val().length != 3 || $("#ds_prefix").val().length != 3 || $("#ds_number").val().length != 4) {
+                error += "You didn't enter a complete phone number.\n";
+            }
+
+            if ($("#ds_title").val() == "") {
+                error += "You didn't enter a event title.\n";
+            }
+
+            if ($("#ds_desc").val() == "") {
+                error += "You didn't enter a event description.\n";
+            }
+
+            return error;
+        };
+
+    </script>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+
+    <script>
+
+        var urllocal = 'dsservice.svc/';
+
+        function GetDoSomething() {
+
+            var response;
+            var datestring = "";
+            uid = getParameterByName("uid");
+
+            $.ajax({
+                type: "GET",
+                url: urllocal + "GetDoSomething",
+                data: { dsId: uid },
+                dataType: "json",
+                success: function (result) {
+                    $('#ds_name').val(result.contactname);
+                    $('#ds_email').val(result.contactemail);
+                    $('#ds_areacode').val(result.contactareacode);
+                    $('#ds_prefix').val(result.contactprefix);
+                    $('#ds_number').val(result.contactnumber);
+                    $('#ds_title').val(result.eventtitle);
+                    $('#ds_desc').val(result.eventdesc);
+                    $('#ds_location').val(result.eventlocation);
+                    $('#ds_startdate').val(result.startdate);
+                    $('#ds_starttime').val(result.starttime);
+                    $('#ds_enddate').val(result.enddate);
+                    $('#ds_endtime').val(result.endtime);
+                },
+                error: function (textStatus) {
+                    alert('Error returned from GetDoSomething');
+                }
+            });
+        }
+    </script>
+
+    <script>
+
+        var urllocal = 'dsservice.svc/';
+
+        function UpdateDoSomethings() {
+
+            var reason = "";
+
+            reason += validateFields();
+
+            if (reason != "") {
+                alert("Some fields need correction:\n" + reason);
+                return false;
+            }
+
+            $("#waitDialog").popup("open")
+            $.ajax({
+                type: "GET",
+                url: urllocal + "UpdateDoSomethings",
+                contentType: "application/json",
+                data: {dsId: uid, contactname: $("#ds_name").val(), contactemail: $("#ds_email").val(), contactareacode: $("#ds_areacode").val(), contactprefix: $("#ds_prefix").val(), contactnumber: $("#ds_number").val(), eventtitle: $("#ds_title").val(), eventdesc: $("#ds_desc").val(), eventlocation: $("#ds_location").val(), startdate: $("#ds_startdate").val(), starttime: $("#ds_starttime").val(), enddate: $("#ds_enddate").val(), endtime: $("#ds_endtime").val(), approved: false }, 
+                success: function (result) {
+                    $("#waitDialog").popup("close")
+                    window.location.href = "thanks.html";
+                },
+                error: function (msg) {
+                    $("#waitDialog").popup("close")
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="GetDoSomething()">
+
+<div data-role="page">
+
+	<div data-role="header" class="page-header home-page-header">
+		<h1>Crossway Church</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+        <div class="logo">
+            <img style="width:100%" src="images/dosomething.png">
+        </div>
+        <h2 class="titlebar">
+            update your
+            <span style="line-height: 0; display: none;">﻿</span>
+            <font color="#5e591e">"do something"</font>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            event here
+            <br />
+        </h2>
+		<label for="ds_name">Contact name for this service opportunity:*</label>
+        <input required="required" maxlength="25" type="text" name="name" id="ds_name" value=""><br />
+        <label for="ds_email">Contact email:*</label>
+        <input maxlength="40" type="text" name="email" id="ds_email" value=""><br />
+        <label for="ds_phone">Contact phone number:*</label>
+        <div class="left">
+            <input title="areacode" pattern="[0-9]*" maxlength="3" type="text" name="phone" id="ds_areacode")>
+        </div>
+        <div class="right">
+            -
+        </div>
+        <div class="left">
+            <input title="prefix" pattern="[0-9]*" maxlength="3" type="text" name="phone1" id="ds_prefix")>
+        </div>
+        <div class="right">
+            -
+        </div>
+        <div class="left">
+            <input title="number" pattern="[0-9]*" maxlength="4" type="text" name="phone2" id="ds_number")>
+        </div>
+        <br /><br /><br /><br />
+        <label for="ds_title">Service Opportunity Title:* (Soup Kitchen Volunteer) Max 25 Characters</label>
+        <input maxlength="25" type="text" name="title" id="ds_title" value=""><br />
+        <label for="ds_desc">Service Description:* (Getting a group together to serve at the soup kitchen, blah, blah,) Max 200 Characters</label>
+        <textarea maxlength="200" name="desc" id="ds_desc"></textarea>
+        <label for="ds_location">Extra information (optional): ("Meet at church", or "Bring your tools!") Max 50 Characters</label>
+        <input maxlength="50" type="text" name="location" id="ds_location" value=""><br />
+        <label><input type="checkbox" id="ds_ongoing" name="ds_ongoing" checked="checked" onclick="toggleStatus()"> Ongoing Event or need (no dates required)</label>
+        <div id="datestuff">
+            <p>Start Date (optional, if this is an ongoing need no date may be necessary): <input disabled="disabled" type="text" id="ds_startdate"></p>
+            <div class="ui-widget">
+                <label for="ds_starttime">Start Time: </label>
+                <input id="ds_starttime" disabled="disabled">
+            </div>
+            <p>End Date (optional, leave blank if the event starts and ends on same day): <input type="text" id="ds_enddate" disabled="disabled"></p>
+            <div class="ui-widget">
+                <label for="ds_endtime">End Time: </label>
+                <input id="ds_endtime" disabled="disabled">
+            </div>
+        </div>
+        <input style="width:100%;background-color:#29abe2;color:white" type="submit" onclick="UpdateDoSomethings()" id="ds_submit" value="Update">
+        <div data-role="popup" id="popupDialog">
+	        <p>Done<p>
+        </div>
+        <div data-role="popup" id="waitDialog">
+	        <p>Please wait. Updating your Do Something event...<p>
+        </div>
+	</div><!-- /content -->
+
+    <p class="social">
+        Stay Connected with Crossway Missions<br />
+            <a href="http://www.facebook.com/visitcrossway"><img src="images/facebook.png" alt="Facebook"></a>
+            <a href="http://twitter.com/visitcrossway"><img src="images/twitter.png" alt="Twitter"></a>       
+    </p>
+
+	<div data-role="footer">
+		<h3>www.visitcrossway.org</h3>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

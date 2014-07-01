@@ -122,6 +122,7 @@
     <Content Include="assets\jqwidgets\styles\images\icon-left.png" />
     <Content Include="assets\jqwidgets\styles\images\icon-right.png" />
     <Content Include="assets\jqwidgets\styles\jqx.base.css" />
+    <Content Include="es.html" />
     <Content Include="images\singleflyer.png" />
     <Content Include="sf.html" />
     <Content Include="dosomething.html" />
