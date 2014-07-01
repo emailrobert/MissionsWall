@@ -112,7 +112,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved, DateTime today)
+        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved)
         //public void AddDoSomething(string contactname, string contactemail)
         {
             try
@@ -134,7 +134,7 @@ namespace DoSomethingWeb
                     enddate = enddate,
                     endtime = endtime,
                     approved = approved,
-                    submissiondate = today.ToString()
+                    submissiondate = DateTime.Now.ToString()
                 };
 
                 DoSomethingDataContext ds = new DoSomethingDataContext();
@@ -159,7 +159,6 @@ namespace DoSomethingWeb
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
         public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation, bool approved, string startdate)
-        //public void AddDoSomething(string contactname, string contactemail)
         {
             try
             {
@@ -182,6 +181,36 @@ namespace DoSomethingWeb
             catch (Exception ex)
             {
                 EventLog.WriteEntry("Error Updating DoSomething", ex.Message);
+            }
+        }
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
+        public void ChangeDoSomethingStatus(Guid dsId, bool approved)
+        {
+            try
+            {
+
+                DoSomethingDataContext ds = new DoSomethingDataContext();
+
+                var sl = from n in ds.dosomethings
+                         where n.Id == dsId
+                         select n;
+                dosomething s = sl.First<dosomething>();
+                s.approved = approved;
+
+                ds.SubmitChanges();
+
+                if (approved == true)
+                {
+                    string customerbody = "Your Do Something Posting Has Been Approved!" + Environment.NewLine + s.eventtitle + Environment.NewLine + s.eventdesc + Environment.NewLine + s.eventlocation + Environment.NewLine + Environment.NewLine + "Go see it here:" + Environment.NewLine + "http://ministrywall.visitcrossway.org";
+                    Globals gf = new Globals();
+                    gf.MailMessage("dosomething@visitcrossway.org", s.contactemail, "Do Something Approved!", customerbody, "");
+                }
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Error Updating DoSomething Status", ex.Message);
             }
         }
 

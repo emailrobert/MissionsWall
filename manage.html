@@ -19,6 +19,40 @@
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.pager.js"></script>    
     <script type="text/javascript" src="assets/jqwidgets/jqxgrid.selection.js"></script>      
 
+    <style>
+        .green {
+
+            color: black;
+
+            background-color: #b6ff00;
+
+        }
+
+        .yellow {
+
+            color: black;
+
+            background-color: yellow;
+
+        }
+        .green:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .green:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+
+            color: black;
+
+            background-color: #b6ff00;
+
+        }
+
+        .yellow:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .yellow:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+
+            color: black;
+
+            background-color: yellow;
+
+        }
+
+    </style>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -72,12 +106,21 @@
                     value = value.substring(0, value.indexOf('#'));
                 }
 
-                //var format = { target: '"_blank"' };
-                //var html = $.jqx.dataFormat.formatlink(value, format);
                 var html = "<a href='mailto:" + value + "'>" + value + "</a>";
                 return html;
 
             }
+
+            var cellclass = function (row, columnfield, value) {
+
+                if (value == true) {
+                    return 'green';
+                }
+                else{
+                    return 'yellow';
+                }
+            }
+
 
             var dataAdapter = new $.jqx.dataAdapter(source);
 
@@ -110,7 +153,7 @@
                   {
                       text: 'Event Location', datafield: 'eventlocation', width: '150px',
                       validation: function (cell, value) {
-                          if (value.length > 25) {
+                          if (value.length > 50) {
                               return { result: false, message: "Location must be 25 characters or less" };
                           }
                           return true;
@@ -119,52 +162,64 @@
                   {
                       text: 'Event Description', datafield: 'eventdesc', width: '400px',
                       validation: function (cell, value) {
-                          if (value.length > 115) {
+                          if (value.length > 200) {
                               return { result: false, message: "Description must be 115 characters or less" };
                           }
                           return true;
                       },
 
                   },
-                  { text: 'Post?', dataField: 'approved', columntype: 'checkbox', width: '50px' },
+                  //{ text: 'Post?', dataField: 'approved', cellclassname: cellclass, columntype: 'checkbox', width: '50px' },
 
-                  //{
-                  //    text: 'Post?', dataField: 'approved', width: '90px', cellsrenderer: function (row, col, value, defaulthtml) {
-                  //        if (value == true) {
-                  //            return '<span style="background-color: #03ff1b;">' + 'Unpost?' + '</span>';
-                  //            //return "Unpost?";
-                  //        } else {
-                  //            return '<span style="background-color: #f6ff03;">' + 'Post?' + '</span>';
-                  //            //return "Post?";
-                  //        }
+                  {
+                      text: 'Post?', dataField: 'approved', columntype: 'button', width: '90px', cellclassname: cellclass, cellsrenderer: function (row, col, value, defaulthtml) {
+                          if (value == true) {
+                              return "Unpost?";
+                          } else {
+                              return "Post?";
+                          }
                           
-                  //    }, buttonclick: function (row) {
+                      }, buttonclick: function (row) {
 
-                  //        var r = confirm("Delete Do Domething?");
-                  //        if (r == true) {
-                  //            editrowindex = row;
+                          var appstatus = $("#jqxgrid").jqxGrid('getcellvalue', row, "approved");
+                          var rtext;
+                          var status;
+                          if (appstatus == true) {
+                              rtext = "Unpost this event?";
+                              status = false;
+                          } else {
+                              rtext = "Post this event?";
+                              status = true;
+                          }
 
-                  //            var id = $("#jqxgrid").jqxGrid('getcellvalue', editrowindex, "uid");
-                  //            var rid = $("#jqxgrid").jqxGrid('getrowid', editrowindex);
+                          var r = confirm(rtext);
 
-                  //            $.ajax({
-                  //                type: "GET",
-                  //                url: "dsservice.svc/DeleteDoSomething",
-                  //                contentType: "application/json",
-                  //                data: { dsId: id },
+                          if (r == true) {
 
-                  //                success: function (result) {
-                  //                    $("#jqxgrid").jqxGrid('deleterow', rid);
-                  //                },
-                  //                error: function (textStatus) {
-                  //                    alert("Error Deleted Do Something Record");
-                  //                }
-                  //            });
-                  //        } else {
+                              var id = $("#jqxgrid").jqxGrid('getcellvalue', row, "uid");
 
-                  //        }
-                  //    }
-                  //},
+                              $.ajax({
+                                  type: "GET",
+                                  url: "dsservice.svc/ChangeDoSomethingStatus",
+                                  contentType: "application/json",
+                                  data: { dsId: id, approved: status },
+
+                                  success: function (result) {
+                                      if (status == true) {
+                                          alert("Posted Successfully!");
+                                      } else {
+                                          alert("Unposted Successfully!");
+                                      }
+                                  },
+                                  error: function (textStatus) {
+                                      alert("Error Updateing Post Status");
+                                  }
+                              });
+                          } else {
+
+                          }
+                      }
+                  },
 
                   {
                       text: 'Delete', datafield: 'Delete', columntype: 'button', width: '50px', cellsrenderer: function () {
