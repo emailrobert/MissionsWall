@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Do Something - Crossway Church</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/jquery-ui.css">
+	<script src="assets/jquery-2.1.1.min.js"></script>
+    <script src="assets/jquery-ui.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+    
+    
+    <style>
+        
+        .flier0
+        {
+           float:none;
+           width:454px;
+           height:531px;
+           top:0px;
+           left:0px;
+           position:absolute;
+           background-image:url(images/singleflyer.png);
+           margin:0px 0px 0px 0px;
+        }
+
+        .title
+        {
+            position:relative;
+            font-family:Arial;
+            top:30px;
+            left:30px;
+            font-weight: bold;
+            font-size:40px;
+            text-align:center;
+            width:90%;
+        }
+
+        .desc
+        {
+            position:relative;
+            font-family: 'Indie Flower', cursive;
+            font-weight: bold;
+            left:30px;
+            top:30px;
+            font-size:20px;
+            text-align:center;
+            width:90%;
+        }
+
+        .date
+        {
+            position:relative;
+            font-family:Arial;
+            font-weight: bold;
+            top:30px;
+            left:30px;
+            font-size:18px;
+            text-align:center;
+            width:90%;
+        }
+
+        .poc
+        {
+            position:relative;
+            font-family:Arial;
+            font-weight: bold;
+            font-size:20px;
+            top:30px;
+            left:30px;
+            text-align:center;
+            width:90%;
+        }
+        
+        .location
+        {
+            position:relative;
+            font-family:Arial;
+            font-weight: bold;
+            font-size:20px;
+            top:30px;
+            left:30px;
+            text-align:center;
+            width:90%;
+        }
+        
+    </style>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+
+    <script>
+
+        var urllocal = 'dsservice.svc/';
+
+        function GetDoSomething() {
+
+            var response;
+            var datestring = "";
+            var uid = getParameterByName("uid");
+
+            $.ajax({
+                type: "GET",
+                url: urllocal + "GetDoSomething",
+                data: { dsId: uid },
+                dataType: "json",
+                success: function (result) {
+                   
+                        datestring = "";
+                        if (result.startdate != "") {
+                            datestring = result.startdate;
+                        }
+                        if (result.enddate != "" && result.enddate != result.startdate) {
+                            datestring = datestring + "-" + result.enddate;
+                        }
+                        if (result.starttime != "") {
+                            datestring = datestring + "<br>" + result.starttime;
+                        }
+                        if (result.endtime != "" && result.endtime != result.starttime) {
+                            datestring = datestring + "-" + result.endtime;
+                        }
+
+                        var email = result.contactemail;
+                        email = email.toLowerCase();
+
+                        $("#flier0title").html(result.eventtitle);
+                        $("#flier0desc").html(result.eventdesc);
+                        $("#flier0poc").html(result.contactname + "<br>" + email + "<br>" + "(" + result.contactareacode + ")" + result.contactprefix + "-" + result.contactnumber);
+                        $("#flier0date").html(datestring);
+                        $("#flier0location").html(result.eventlocation);
+                },
+                error: function (textStatus) {
+                    alert('Error returned from GetADoSomething');
+                }
+            });
+        }
+    </script>
+</head>
+
+<body onload="GetDoSomething()">
+    <div class="flier0">
+        <div id="flier0title" class="title">
+            Old Title
+        </div>
+        <div id="flier0date" class="date">
+            Old Date
+        </div>
+        <div id="flier0location" class="location">
+            Old Location
+        </div>
+        <br />
+        <div id="flier0desc" class="desc">
+            Old Desc
+        </div>
+        <br />
+        <div id="flier0poc" class="poc">
+            Old Poc
+        </div>
+    </div>
+</body>
+</html>
