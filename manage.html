@@ -128,7 +128,7 @@
 
             $("#jqxgrid").jqxGrid(
             {
-                width: 1100,
+                width: 1200,
                 source: dataAdapter,
                 pageable: true,
                 autoheight: true,
@@ -169,7 +169,6 @@
                       },
 
                   },
-                  //{ text: 'Post?', dataField: 'approved', cellclassname: cellclass, columntype: 'checkbox', width: '50px' },
 
                   {
                       text: 'Post?', dataField: 'approved', columntype: 'button', width: '90px', cellclassname: cellclass, cellsrenderer: function (row, col, value, defaulthtml) {
@@ -250,6 +249,35 @@
                              
                           }
                       }
+                  },
+
+                  {
+                      text: 'Send Email', columntype: 'button', width: '100px', cellsrenderer: function () {
+                          return "Send Email";
+                      }, buttonclick: function (row) {
+
+                          var r = confirm("Send Update Email?");
+                          if (r == true) {
+
+                              var id = $("#jqxgrid").jqxGrid('getcellvalue', row, "uid");
+
+                              $.ajax({
+                                  type: "GET",
+                                  url: "dsservice.svc/SendUpdateEmail",
+                                  contentType: "application/json",
+                                  data: { dsId: id },
+
+                                  success: function (result) {
+                                      alert("Update Email Sent");
+                                  },
+                                  error: function (textStatus) {
+                                      alert("Error Sending Update Email");
+                                  }
+                              });
+                          } else {
+
+                          }
+                      }
                   }
 
                 ]
@@ -260,7 +288,7 @@
 </head>
 
 <body class='default'>
-    <div id='jqxWidget' style="width:1050px;margin:auto;font-size: 13px; font-family: Verdana;">     
+    <div id='jqxWidget' style="width:1150px;margin:auto;font-size: 13px; font-family: Verdana;">     
             <h1>Crossway Church Do Something Events</h1>
         <div id="jqxgrid">
         </div>
