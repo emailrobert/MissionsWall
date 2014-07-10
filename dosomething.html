@@ -480,16 +480,16 @@
         <textarea maxlength="200" name="desc" id="ds_desc"></textarea>
         <label for="ds_location">Extra information (optional): ("Meet at church", or "Bring your tools!") Max 50 Characters</label>
         <input maxlength="50" type="text" name="location" id="ds_location" value=""><br />
-        <label><input type="checkbox" id="ds_ongoing" name="ds_ongoing" checked="checked" onclick="toggleStatus()"> Ongoing Event or need (no dates required)</label>
+        <label><input type="checkbox" id="ds_ongoing" name="ds_ongoing" checked="checked" onclick="toggleStatus()"> No dates or times required (uncheck if they are)</label>
         <div id="datestuff">
             <p>Start Date (optional, if this is an ongoing need no date may be necessary): <input disabled="disabled" type="text" id="ds_startdate"></p>
             <div class="ui-widget">
-                <label for="ds_starttime">Start Time: </label>
+                <label for="ds_starttime">Start Time (optional): </label>
                 <input id="ds_starttime" disabled="disabled">
             </div>
             <p>End Date (optional, leave blank if the event starts and ends on same day): <input type="text" id="ds_enddate" disabled="disabled"></p>
             <div class="ui-widget">
-                <label for="ds_endtime">End Time: </label>
+                <label for="ds_endtime">End Time (optional): </label>
                 <input id="ds_endtime" disabled="disabled">
             </div>
         </div>

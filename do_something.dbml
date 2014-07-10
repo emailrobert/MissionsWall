@@ -16,7 +16,7 @@
       <Column Name="enddate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="endtime" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="submissiondate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="submissiondate" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Column Name="submittername" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="submitteremail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
