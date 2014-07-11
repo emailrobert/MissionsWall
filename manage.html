@@ -131,11 +131,13 @@
                 width: 1200,
                 source: dataAdapter,
                 pageable: true,
+
                 autoheight: true,
                 theme: 'energyblue',
                 autorowheight: true,
+                pageable: false,
                 rowsheight: 70,
-                editable: true,
+                editable: false,
                 altrows: true,
                 columns: [
                   { text: 'Contact Name', datafield: 'contactname', width: '100px', editable: false},
@@ -220,36 +222,7 @@
                       }
                   },
 
-                  {
-                      text: 'Delete', datafield: 'Delete', columntype: 'button', width: '50px', cellsrenderer: function () {
-                          return "Delete";
-                      }, buttonclick: function (row) {
-
-                          var r = confirm("Delete Do Domething?");
-                          if (r == true) {
-                              editrowindex = row;
-
-                              var id = $("#jqxgrid").jqxGrid('getcellvalue', editrowindex, "uid");
-                              var rid = $("#jqxgrid").jqxGrid('getrowid', editrowindex);
-
-                              $.ajax({
-                                  type: "GET",
-                                  url: "dsservice.svc/DeleteDoSomething",
-                                  contentType: "application/json",
-                                  data: { dsId: id },
-
-                                  success: function (result) {
-                                      $("#jqxgrid").jqxGrid('deleterow', rid);
-                                  },
-                                  error: function (textStatus) {
-                                      alert("Error Deleted Do Something Record");
-                                  }
-                              });
-                          } else {
-                             
-                          }
-                      }
-                  },
+                  
 
                   {
                       text: 'Send Email', columntype: 'button', width: '100px', cellsrenderer: function () {
@@ -277,6 +250,14 @@
                           } else {
 
                           }
+                      }
+                  },
+                  {
+                      text: 'Edit', columntype: 'button', width: '55px', cellsrenderer: function () {
+                          return "Edit";
+                      }, buttonclick: function (row) {
+                          var id = $("#jqxgrid").jqxGrid('getcellvalue', row, "uid");
+                          window.location.href = "es.html?uid=" + id;
                       }
                   }
 
