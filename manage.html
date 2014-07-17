@@ -128,7 +128,7 @@
 
             $("#jqxgrid").jqxGrid(
             {
-                width: 1200,
+                width: 850,
                 source: dataAdapter,
                 pageable: true,
 
@@ -141,17 +141,7 @@
                 altrows: true,
                 columns: [
                   { text: 'Contact Name', datafield: 'contactname', width: '100px', editable: false},
-                  //{ text: 'Contact Email', datafield: 'contactemail', width: '200px', cellsrenderer: linkrenderer },
-                  { text: 'Start Date', datafield: 'startdate', width: '100px', cellsformat: "D" },
-                  {
-                      text: 'Event Title', datafield: 'eventtitle', width: '200px',
-                      validation: function (cell, value) {
-                          if (value.length > 25) {
-                              return { result: false, message: "Title must be 25 characters or less" };
-                          }
-                          return true;
-                      },
-                  },
+                  
                   {
                       text: 'Event Location', datafield: 'eventlocation', width: '150px',
                       validation: function (cell, value) {
@@ -162,7 +152,7 @@
                       },
                   },
                   {
-                      text: 'Event Description', datafield: 'eventdesc', width: '400px',
+                      text: 'Event Description', datafield: 'eventdesc', width: '300px',
                       validation: function (cell, value) {
                           if (value.length > 200) {
                               return { result: false, message: "Description must be 115 characters or less" };
@@ -250,6 +240,14 @@
                           } else {
 
                           }
+                      }
+                  },
+                  {
+                      text: 'View', columntype: 'button', width: '55px', cellsrenderer: function () {
+                          return "View";
+                      }, buttonclick: function (row) {
+                          var id = $("#jqxgrid").jqxGrid('getcellvalue', row, "uid");
+                          window.location.href = "sf.html?uid=" + id;
                       }
                   },
                   {
