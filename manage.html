@@ -5,6 +5,7 @@
     <title id='Description'>Do Something Management Page</title>
     <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.energyblue.css" type="text/css" />
+    <link href="//cdn1.editmysite.com/editor/fonts/Bebas/font.css?2" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="assets/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxdata.js"></script> 
@@ -51,6 +52,11 @@
 
             background-color: yellow;
 
+        }
+
+        .titlebar
+        {
+            font-size: 40px; font-family: 'Bebas', sans-serif; font-weight: normal; color: #3b3b3b; text-transform: uppercase; text-align:center;
         }
 
     </style>
@@ -133,7 +139,6 @@
                 width: 850,
                 source: dataAdapter,
                 pageable: true,
-
                 autoheight: true,
                 theme: 'energyblue',
                 autorowheight: true,
@@ -142,28 +147,9 @@
                 editable: false,
                 altrows: true,
                 columns: [
-                  { text: 'Contact Name', datafield: 'contactname', width: '100px', editable: false},
-                  
-                  {
-                      text: 'Event Location', datafield: 'eventlocation', width: '150px',
-                      validation: function (cell, value) {
-                          if (value.length > 50) {
-                              return { result: false, message: "Location must be 25 characters or less" };
-                          }
-                          return true;
-                      },
-                  },
-                  {
-                      text: 'Event Description', datafield: 'eventdesc', width: '300px',
-                      validation: function (cell, value) {
-                          if (value.length > 200) {
-                              return { result: false, message: "Description must be 115 characters or less" };
-                          }
-                          return true;
-                      },
-
-                  },
-
+                  {text: 'Contact Name', datafield: 'contactname', width: '100px', editable: false},
+                  {text: 'Event Location', datafield: 'eventlocation', width: '150px'},
+                  {text: 'Event Description', datafield: 'eventdesc', width: '300px'},
                   {
                       text: 'Post?', dataField: 'approved', columntype: 'button', width: '90px', cellclassname: cellclass, cellsrenderer: function (row, col, value, defaulthtml) {
                           if (value == true) {
@@ -213,9 +199,6 @@
                           }
                       }
                   },
-
-                  
-
                   {
                       text: 'Send Email', columntype: 'button', width: '100px', cellsrenderer: function () {
                           return "Send Email";
@@ -269,8 +252,18 @@
 </head>
 
 <body class='default'>
-    <div id='jqxWidget' style="width:1150px;margin:auto;font-size: 13px; font-family: Verdana;">     
-            <h1>Crossway Church Do Something Events</h1>
+    <div id='jqxWidget' style="width:850px;margin:auto;font-size: 13px; font-family: Verdana;">     
+            <h2 class="titlebar">
+            crossway
+            <span style="line-height: 0; display: none;">﻿</span>
+            <font color="#5e591e">do something</font>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            events
+            <br />
+        </h2>
         <div id="jqxgrid">
         </div>
     </div>

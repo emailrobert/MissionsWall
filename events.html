@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title id='Description'>Do Something Management Page</title>
+    <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.energyblue.css" type="text/css" />
+    <link href="//cdn1.editmysite.com/editor/fonts/Bebas/font.css?2" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="assets/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxdata.js"></script> 
+    <script type="text/javascript" src="assets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxcheckbox.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.edit.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.pager.js"></script>    
+    <script type="text/javascript" src="assets/jqwidgets/jqxgrid.selection.js"></script>      
+
+    <style>
+        .green {
+
+            color: black;
+
+            background-color: #b6ff00;
+
+        }
+
+
+
+        .yellow {
+
+            color: black;
+
+            background-color: yellow;
+
+        }
+        .green:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .green:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+
+            color: black;
+
+            background-color: #b6ff00;
+
+        }
+
+        .yellow:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .yellow:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+
+            color: black;
+
+            background-color: yellow;
+
+        }
+
+        .titlebar
+        {
+            font-size: 40px; font-family: 'Bebas', sans-serif; font-weight: normal; color: #3b3b3b; text-transform: uppercase; text-align:center;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var url = "dsservice.svc/GetAllDoSomethings";
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'contactname', type: 'string' },
+                    { name: 'contactemail', type: 'string' },
+                    { name: 'contactareacode', type: 'string' },
+                    { name: 'contactprefix', type: 'string' },
+                    { name: 'contactnumber', type: 'string' },
+                    { name: 'eventtitle', type: 'string' },
+                    { name: 'eventdesc', type: 'string' },
+                    { name: 'eventlocation', type: 'string' },
+                    { name: 'startdate', type: 'string' },
+                    { name: 'starttime', type: 'string' },
+                    { name: 'enddate', type: 'string' },
+                    { name: 'endtime', type: 'string' },
+                    { name: 'approved', type: 'boolean' }
+                ],
+                id: 'Id',
+                url: url
+            };
+
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            $("#jqxgrid").jqxGrid(
+            {
+                width: 900,
+                source: dataAdapter,
+                pageable: false,
+                autoheight: true,
+                theme: 'energyblue',
+                autorowheight: true,
+                pageable: false,
+                rowsheight: 70,
+                editable: false,
+                altrows: true,
+                columns: [
+                  {
+                      text: 'Event Description', width: '300px', cellsrenderer: function (row) {
+                          var datarow = $("#jqxgrid").jqxGrid('getrowdata', row);
+                          return '<div style="text-align: left"><b>' + datarow.eventtitle + "</b> - " + datarow.eventdesc + "</div>";
+                      }
+                  },
+                  {
+                      text: 'Contact Name', width: '150px', cellsrenderer: function (row) {
+                          var datarow = $("#jqxgrid").jqxGrid('getrowdata', row);
+                          return '<div style="text-align: center; margin-top: 30px;">' + "<a href='mailto:" + datarow.contactemail + "'>" + datarow.contactname + "</a></div>";
+                      }
+                  },
+                  {
+                      text: 'Number', width: '150px', cellsrenderer: function (row) {
+                          var datarow = $("#jqxgrid").jqxGrid('getrowdata', row);
+                          var number = "(" + datarow.contactareacode + ") " + datarow.contactprefix + "-" + datarow.contactnumber;
+                          return '<div style="text-align: center; margin-top: 30px;">' + number + '</div>';
+                        }
+                  },
+                  { text: 'Other Event Info', datafield: 'eventlocation', width: '150px' },
+                  {
+                      text: 'Dates', width: '150px', cellsrenderer: function (row) {
+                          var datarow = $("#jqxgrid").jqxGrid('getrowdata', row);
+                          var datestring = "";
+                          if (datarow.startdate != "") {
+                              datestring = datarow.startdate;
+                          }
+                          if (datarow.enddate != "" && datarow.enddate != datarow.startdate) {
+                              datestring = datestring + "-" + datarow.enddate;
+                          }
+                          if (datarow.starttime != "") {
+                              datestring = datestring + "<br>" + datarow.starttime;
+                          }
+                          if (datarow.endtime != "" && datarow.endtime != datarow.starttime) {
+                              datestring = datestring + "-" + datarow.endtime;
+                          }
+                          return '<div style="text-align: center; margin-top: 10px;">' + datestring + '</div>';
+                      }
+                  }
+                ]
+            });
+        });
+    </script>
+
+</head>
+
+<body class='default'>
+    <div id='jqxWidget' style="width:900px;margin:auto;font-size: 13px; font-family: Verdana;">     
+            <h2 class="titlebar">
+            crossway
+            <span style="line-height: 0; display: none;">﻿</span>
+            <font color="#5e591e">do something</font>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            <span style="line-height: 0; display: none;">﻿</span>
+            events
+            <br />
+        </h2>
+        <div id="jqxgrid">
+        </div>
+    </div>
+</body>
+</html>
