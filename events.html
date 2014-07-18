@@ -29,6 +29,11 @@
 
         }
 
+        .social
+        {
+            text-align:center;
+        }
+
 
 
         .yellow {
@@ -52,6 +57,14 @@
 
             background-color: yellow;
 
+        }
+
+        div.logo {
+	        width:100%; 
+            position: relative;
+            height: 100%;
+            max-width:400px;
+            margin: 0px auto 0px auto 
         }
 
         .titlebar
@@ -150,6 +163,9 @@
 </head>
 
 <body class='default'>
+    <div class="logo">
+            <img style="width:100%" src="images/dosomething.png">
+        </div>
     <div id='jqxWidget' style="width:900px;margin:auto;font-size: 13px; font-family: Verdana;">     
             <h2 class="titlebar">
             crossway
@@ -162,6 +178,7 @@
             events
             <br />
         </h2>
+        <div class="social"><h2>To add an event to this list click here!<br /><a href="http://dosomething.visitcrossway.org">dosomething.visitcrossway.org</a></h2></div><br />
         <div id="jqxgrid">
         </div>
     </div>
