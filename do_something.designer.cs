@@ -34,6 +34,9 @@ namespace DoSomethingWeb
     partial void Insertdosomething(dosomething instance);
     partial void Updatedosomething(dosomething instance);
     partial void Deletedosomething(dosomething instance);
+    partial void Insertowner(owner instance);
+    partial void Updateowner(owner instance);
+    partial void Deleteowner(owner instance);
     #endregion
 		
 		public DoSomethingDataContext() : 
@@ -73,6 +76,14 @@ namespace DoSomethingWeb
 				return this.GetTable<dosomething>();
 			}
 		}
+		
+		public System.Data.Linq.Table<owner> owners
+		{
+			get
+			{
+				return this.GetTable<owner>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.dosomething")]
@@ -81,6 +92,8 @@ namespace DoSomethingWeb
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ownerId;
 		
 		private System.Guid _Id;
 		
@@ -116,10 +129,14 @@ namespace DoSomethingWeb
 		
 		private string _submitteremail;
 		
+		private EntityRef<owner> _owner;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnownerIdChanging(string value);
+    partial void OnownerIdChanged();
     partial void OnIdChanging(System.Guid value);
     partial void OnIdChanged();
     partial void OncontactnameChanging(string value);
@@ -161,8 +178,33 @@ namespace DoSomethingWeb
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ownerId", DbType="VarChar(50)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public string ownerId
+		{
+			get
+			{
+				return this._ownerId;
+			}
+			set
+			{
+				if ((this._ownerId != value))
+				{
+					if (this._owner.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnownerIdChanging(value);
+					this.SendPropertyChanging();
+					this._ownerId = value;
+					this.SendPropertyChanged("ownerId");
+					this.OnownerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
 		public System.Guid Id
 		{
 			get
@@ -183,7 +225,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactname", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
 		public string contactname
 		{
 			get
@@ -204,7 +246,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactemail", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
 		public string contactemail
 		{
 			get
@@ -225,7 +267,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactareacode", DbType="VarChar(3)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
 		public string contactareacode
 		{
 			get
@@ -246,7 +288,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactprefix", DbType="VarChar(3)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
 		public string contactprefix
 		{
 			get
@@ -267,7 +309,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactnumber", DbType="VarChar(4)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
 		public string contactnumber
 		{
 			get
@@ -288,7 +330,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventtitle", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
 		public string eventtitle
 		{
 			get
@@ -309,7 +351,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventdesc", DbType="VarChar(210)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
 		public string eventdesc
 		{
 			get
@@ -330,7 +372,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventlocation", DbType="VarChar(55)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
 		public string eventlocation
 		{
 			get
@@ -351,7 +393,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_startdate", DbType="VarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
 		public string startdate
 		{
 			get
@@ -372,7 +414,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_starttime", DbType="VarChar(10)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
 		public string starttime
 		{
 			get
@@ -393,7 +435,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_enddate", DbType="VarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13)]
 		public string enddate
 		{
 			get
@@ -414,7 +456,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_endtime", DbType="VarChar(10)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14)]
 		public string endtime
 		{
 			get
@@ -435,7 +477,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved", DbType="Bit")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15)]
 		public System.Nullable<bool> approved
 		{
 			get
@@ -456,7 +498,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_submissiondate", DbType="VarChar(40)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16)]
 		public string submissiondate
 		{
 			get
@@ -477,7 +519,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_submittername", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17)]
 		public string submittername
 		{
 			get
@@ -498,7 +540,7 @@ namespace DoSomethingWeb
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_submitteremail", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=18)]
 		public string submitteremail
 		{
 			get
@@ -514,6 +556,40 @@ namespace DoSomethingWeb
 					this._submitteremail = value;
 					this.SendPropertyChanged("submitteremail");
 					this.OnsubmitteremailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="owner_dosomething", Storage="_owner", ThisKey="ownerId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public owner owner
+		{
+			get
+			{
+				return this._owner.Entity;
+			}
+			set
+			{
+				owner previousValue = this._owner.Entity;
+				if (((previousValue != value) 
+							|| (this._owner.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._owner.Entity = null;
+						previousValue.dosomethings.Remove(this);
+					}
+					this._owner.Entity = value;
+					if ((value != null))
+					{
+						value.dosomethings.Add(this);
+						this._ownerId = value.Id;
+					}
+					else
+					{
+						this._ownerId = default(string);
+					}
+					this.SendPropertyChanged("owner");
 				}
 			}
 		}
@@ -540,6 +616,7 @@ namespace DoSomethingWeb
 		
 		private void Initialize()
 		{
+			this._owner = default(EntityRef<owner>);
 			OnCreated();
 		}
 		
@@ -548,6 +625,157 @@ namespace DoSomethingWeb
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.owner")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class owner : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Id;
+		
+		private string _OwnerName;
+		
+		private EntitySet<dosomething> _dosomethings;
+		
+		private bool serializing;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(string value);
+    partial void OnIdChanged();
+    partial void OnOwnerNameChanging(string value);
+    partial void OnOwnerNameChanged();
+    #endregion
+		
+		public owner()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public string OwnerName
+		{
+			get
+			{
+				return this._OwnerName;
+			}
+			set
+			{
+				if ((this._OwnerName != value))
+				{
+					this.OnOwnerNameChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerName = value;
+					this.SendPropertyChanged("OwnerName");
+					this.OnOwnerNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="owner_dosomething", Storage="_dosomethings", ThisKey="Id", OtherKey="ownerId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3, EmitDefaultValue=false)]
+		public EntitySet<dosomething> dosomethings
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._dosomethings.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._dosomethings;
+			}
+			set
+			{
+				this._dosomethings.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_dosomethings(dosomething entity)
+		{
+			this.SendPropertyChanging();
+			entity.owner = this;
+		}
+		
+		private void detach_dosomethings(dosomething entity)
+		{
+			this.SendPropertyChanging();
+			entity.owner = null;
+		}
+		
+		private void Initialize()
+		{
+			this._dosomethings = new EntitySet<dosomething>(new Action<dosomething>(this.attach_dosomethings), new Action<dosomething>(this.detach_dosomethings));
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 }

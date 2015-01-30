@@ -269,6 +269,16 @@
         }
         
     </style>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+
     <script>
 
         var urllocal = 'dsservice.svc/';
@@ -278,10 +288,17 @@
             var response;
             var datestring = "";
 
+            var oid = getParameterByName("oid");
+
+            if (oid == "") {
+                oid = 1
+            }
+
             $.ajax({
                 type: "GET",
                 url: urllocal + "GetAllApprovedDoSomethings",
-                data: { dsId: '83fbed3c-8965-4e30-b213-2d7412881be6' },
+               // data: { dsId: '83fbed3c-8965-4e30-b213-2d7412881be6' },
+                data: { oId: oid },
                 dataType: "json",
                 success: function (result) {
                     
@@ -337,15 +354,15 @@
 
                         //var qrstring = result[i].eventtitle + "|" + datestring + "|" + result[i].contactname + "|" + result[i].contactemail + "|(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber
                         // qrstring = qrstring.replace(/ /g, "+");
-                        qrstring = "http://visitcrossway.com/sf.html?uid=" + result[i].Id;
-                        qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
+                     //   qrstring = "http://visitcrossway.com/sf.html?uid=" + result[i].Id;
+                     //   qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
 
                         $(currentcell + "title").html(result[i].eventtitle);
                         $(currentcell + "desc").html(result[i].eventdesc);
                         $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
                         $(currentcell + "date").html(datestring);
                         $(currentcell + "location").html(result[i].eventlocation);
-                        $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
+                      //  $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
                         divcounter++;
                     }
 
@@ -373,7 +390,7 @@
                                     $(currentcell + "poc").html("");
                                     $(currentcell + "date").html("");
                                     $(currentcell + "location").html("");
-                                    $(currentcell + "qr").html("");
+                              //      $(currentcell + "qr").html("");
                                 }
                             }
 
@@ -398,9 +415,9 @@
                                 email = result[i].contactemail;
                                 email = email.toLowerCase();
 
-                                qrstring = result[i].eventtitle + "|" + result[i].startdate + "|" + result[i].contactname + "|" + result[i].contactemail + "|(" + result[i].contactareacode + ")|" + result[i].contactprefix + "-" + result[i].contactnumber
-                                qrstring = qrstring.replace(/ /g, "+");
-                                qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
+                         //       qrstring = result[i].eventtitle + "|" + result[i].startdate + "|" + result[i].contactname + "|" + result[i].contactemail + "|(" + result[i].contactareacode + ")|" + result[i].contactprefix + "-" + result[i].contactnumber
+                        //        qrstring = qrstring.replace(/ /g, "+");
+                        //        qrstring = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrstring + "&amp;size=75x75";
 
 
                                 $(currentcell + "title").html(result[i].eventtitle);
@@ -408,7 +425,7 @@
                                 $(currentcell + "poc").html(result[i].contactname + "<br>" + email + "<br>" + "(" + result[i].contactareacode + ")" + result[i].contactprefix + "-" + result[i].contactnumber);
                                 $(currentcell + "date").html(datestring);
                                 $(currentcell + "location").html(result[i].eventlocation);
-                                $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
+                         //       $(currentcell + "qr").html("<iframe frameborder='0'  class='qr' src='" + qrstring + "'></iframe>");
 
                                 divcounter++;
                             }
@@ -446,7 +463,7 @@
                 Old Poc
             </div>
             <div id="flier0qr" class="qr0">
-                Old QR
+          
             </div>
         </div>
         <div class="flier1">
@@ -468,7 +485,7 @@
                 Old Poc
             </div>
             <div id="flier1qr" class="qr1">
-               Old QR
+            
             </div>
         </div>
         <div class="flier2">
@@ -490,7 +507,7 @@
                 Old Poc
             </div>
             <div id="flier2qr" class="qr2">
-                Old QR
+             
             </div>
         </div>
         <div class="flier3">
@@ -512,7 +529,7 @@
                 Old Poc
             </div>
             <div id="flier3qr" class="qr3">
-                Old QR
+               
             </div>
         </div>
         <div class="flier4">
@@ -534,7 +551,7 @@
                 Old Poc
             </div>
             <div id="flier4qr" class="qr4">
-                Old QR
+              
             </div>
         </div>
         <div class="flier5">
@@ -556,7 +573,7 @@
                 Old Poc
             </div>
             <div id="flier5qr" class="qr5">
-                Old QR
+              
             </div>
         </div>
         <div class="flier6">
@@ -578,7 +595,7 @@
                 Old Poc
             </div>
             <div id="flier6qr" class="qr6">
-                Old QR
+               
             </div>
         </div>
         <div class="flier7">
@@ -600,7 +617,7 @@
                 Old Poc
             </div>
             <div id="flier7qr" class="qr7">
-                Old QR
+               
             </div>
         </div>
     </div>

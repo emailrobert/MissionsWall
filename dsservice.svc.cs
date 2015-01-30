@@ -28,7 +28,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void DeleteDoSomething(Guid dsId)
+        public void DeleteDoSomething(Guid dsId)            //No Modifications needed for Youth
         {
             try
             {
@@ -72,12 +72,13 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public dosomething[] GetAllDoSomethings()
+        public dosomething[] GetAllDoSomethings(string oId)     //Modified for Youth
         {
             try
             {
                 DoSomethingDataContext ds = new DoSomethingDataContext();
                 var dss = from i in ds.dosomethings
+                          where i.ownerId == oId
                           orderby i.submissiondate descending
                           select i;
                 dosomething[] ii = dss.ToArray<dosomething>();
@@ -92,13 +93,13 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public dosomething[] GetAllApprovedDoSomethings()
+        public dosomething[] GetAllApprovedDoSomethings(string oId)   //Modified for Youth
         {
             try
             {
                 DoSomethingDataContext ds = new DoSomethingDataContext();
                 var dss = from i in ds.dosomethings
-                          where i.approved == true && ( i.startdate == "" || Convert.ToDateTime(i.startdate) >= DateTime.Today)
+                          where i.approved == true && ( i.startdate == "" || Convert.ToDateTime(i.startdate) >= DateTime.Today) && i.ownerId == oId
                           select i;
                 dosomething[] ii = dss.ToArray<dosomething>();
                 return ii;
@@ -112,7 +113,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved, string submittername, string submitteremail)
+        public void AddDoSomething(string contactname, string contactemail, string contactareacode, string contactprefix, string contactnumber, string eventtitle, string eventdesc, string eventlocation, string startdate, string starttime, string enddate, string endtime, bool approved, string submittername, string submitteremail, string oId)
         {
             try
             {
@@ -120,6 +121,7 @@ namespace DoSomethingWeb
                 dosomething d = new dosomething
                 {
                     Id = newg,
+                    ownerId = oId,
                     submittername = submittername,
                     submitteremail = submitteremail,
                     contactname = contactname,
@@ -156,34 +158,34 @@ namespace DoSomethingWeb
                 EventLog.WriteEntry("Error Adding DoSomething", ex.Message);
             }
         }
+         
+        //[OperationContract]        //May not need aby longer
+        //[WebGet(ResponseFormat = WebMessageFormat.Json)]
+        //public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation, bool approved, string startdate)
+        //{
+        //    try
+        //    {
 
-        [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void UpdateDoSomething(Guid dsId, string eventtitle, string eventdesc, string eventlocation, bool approved, string startdate)
-        {
-            try
-            {
+        //        DoSomethingDataContext ds = new DoSomethingDataContext();
 
-                DoSomethingDataContext ds = new DoSomethingDataContext();
+        //        var sl = from n in ds.dosomethings
+        //                 where n.Id == dsId
+        //                 select n;
 
-                var sl = from n in ds.dosomethings
-                         where n.Id == dsId
-                         select n;
+        //        dosomething s = sl.First<dosomething>();
 
-                dosomething s = sl.First<dosomething>();
-
-                s.eventtitle = eventtitle;
-                s.eventdesc = eventdesc;
-                s.eventlocation = eventlocation;
-                s.approved = approved;
-                s.startdate = startdate;
-                ds.SubmitChanges();
-            }
-            catch (Exception ex)
-            {
-                EventLog.WriteEntry("Error Updating DoSomething", ex.Message);
-            }
-        }
+        //        s.eventtitle = eventtitle;
+        //        s.eventdesc = eventdesc;
+        //        s.eventlocation = eventlocation;
+        //        s.approved = approved;
+        //        s.startdate = startdate;
+        //        ds.SubmitChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        EventLog.WriteEntry("Error Updating DoSomething", ex.Message);
+        //    }
+        //}
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
@@ -191,6 +193,8 @@ namespace DoSomethingWeb
         {
             try
             {
+
+                //May not need modified for youth
 
                 DoSomethingDataContext ds = new DoSomethingDataContext();
 
@@ -234,7 +238,7 @@ namespace DoSomethingWeb
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json)]
-        public void ChangeDoSomethingStatus(Guid dsId, bool approved)
+        public void ChangeDoSomethingStatus(Guid dsId, bool approved)   //Modified for Youth
         {
             try
             {

@@ -74,9 +74,24 @@
 
     </style>
 
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+            var oid = getParameterByName("oid");
+
+            if (oid == "") {
+                oid = 1
+            }
 
             var url = "dsservice.svc/GetAllDoSomethings";
             var source =
@@ -98,7 +113,8 @@
                     { name: 'approved', type: 'boolean' }
                 ],
                 id: 'Id',
-                url: url
+                url: url,
+                data: { oId: oid }
             };
 
             var dataAdapter = new $.jqx.dataAdapter(source);

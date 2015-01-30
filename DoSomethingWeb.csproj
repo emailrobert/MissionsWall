@@ -122,6 +122,7 @@
     <Content Include="assets\jqwidgets\styles\images\icon-left.png" />
     <Content Include="assets\jqwidgets\styles\images\icon-right.png" />
     <Content Include="assets\jqwidgets\styles\jqx.base.css" />
+    <Content Include="city.html" />
     <Content Include="events.html" />
     <Content Include="deleted.html" />
     <Content Include="es.html" />

@@ -56,7 +56,7 @@
 
     <script>
 
-        function DeleteDoSomething(row) {
+        function DeleteDoSomething(row) {               //Should already work for Youth
 
             var r = confirm("Delete This Do Domething?");
             if (r == true) {
@@ -410,7 +410,7 @@
             var datestring = "";
             uid = getParameterByName("uid");
 
-            $.ajax({
+            $.ajax({                                         //May not need modified for Youth
                 type: "GET",
                 url: urllocal + "GetDoSomething",
                 data: { dsId: uid },
@@ -452,7 +452,7 @@
             }
 
             $("#waitDialog").popup("open")
-            $.ajax({
+            $.ajax({                                     //May not need modified for Youth
                 type: "GET",
                 url: urllocal + "UpdateDoSomethings",
                 contentType: "application/json",

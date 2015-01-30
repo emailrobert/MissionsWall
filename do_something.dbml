@@ -2,6 +2,7 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=mssql.visitcrossway.com;Initial Catalog=dosomething;Persist Security Info=True;User ID=dosomething" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="dosomethingConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.dosomething" Member="dosomethings">
     <Type Name="dosomething">
+      <Column Name="ownerId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="contactname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="contactemail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -19,6 +20,14 @@
       <Column Name="submissiondate" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Column Name="submittername" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="submitteremail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="owner_dosomething" Member="owner" ThisKey="ownerId" OtherKey="Id" Type="owner" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.owner" Member="owners">
+    <Type Name="owner">
+      <Column Name="Id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OwnerName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="owner_dosomething" Member="dosomethings" ThisKey="Id" OtherKey="ownerId" Type="dosomething" />
     </Type>
   </Table>
 </Database>

@@ -61,11 +61,25 @@
 
     </style>
 
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
 
             // prepare the data
+            var oid = getParameterByName("oid");
+
+            if (oid == "") {
+                oid = 1
+            }
 
             var url = "dsservice.svc/GetAllDoSomethings";
             // prepare the data
@@ -89,23 +103,24 @@
                 ],
                 id: 'Id',
                 url: url,
-                updaterow: function (rowid, rowdata, commit) {
-                    // synchronize with the server - send update command
+                data: { oId: oid }
+                //updaterow: function (rowid, rowdata, commit) {                  //No longer needed since we dont edit by row, now we open es.html to edit
+                //    // synchronize with the server - send update command
                     
-                    $.ajax({
-                        type: "GET",
-                        url: "dsservice.svc/UpdateDoSomething",
-                        contentType: "application/json",
-                        data: { dsId: rowdata.uid, eventtitle: rowdata.eventtitle, eventdesc: rowdata.eventdesc, eventlocation: rowdata.eventlocation, approved:rowdata.approved, startdate:rowdata.startdate },
+                //    $.ajax({
+                //        type: "GET",
+                //        url: "dsservice.svc/UpdateDoSomething",
+                //        contentType: "application/json",
+                //        data: { dsId: rowdata.uid, eventtitle: rowdata.eventtitle, eventdesc: rowdata.eventdesc, eventlocation: rowdata.eventlocation, approved:rowdata.approved, startdate:rowdata.startdate },
                         
-                        success: function (result) {
-                            alert("Do Something Record Successfully Updated");
-                        },
-                        error: function (textStatus) {
-                            alert("Error Updating Do Something Record");
-                        }
-                    });
-                }
+                //        success: function (result) {
+                //            alert("Do Something Record Successfully Updated");
+                //        },
+                //        error: function (textStatus) {
+                //            alert("Error Updating Do Something Record");
+                //        }
+                //    });
+                //}
             };
 
             var linkrenderer = function (row, column, value) {
@@ -179,7 +194,7 @@
 
                               $.ajax({
                                   type: "GET",
-                                  url: "dsservice.svc/ChangeDoSomethingStatus",
+                                  url: "dsservice.svc/ChangeDoSomethingStatus",     //Modified for Youth
                                   contentType: "application/json",
                                   data: { dsId: id, approved: status },
 
@@ -200,7 +215,7 @@
                       }
                   },
                   {
-                      text: 'Send Email', columntype: 'button', width: '100px', cellsrenderer: function () {
+                      text: 'Send Email', columntype: 'button', width: '100px', cellsrenderer: function () {       //Modified for Youth
                           return "Send Email";
                       }, buttonclick: function (row) {
 
